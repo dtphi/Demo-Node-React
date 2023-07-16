@@ -36,3 +36,5 @@ source ~/.bash_profile
 # Issues
 
 ## 1. DNR-Adding authentication user to the app-api server using the sqlite database.
+
+## 2.
