@@ -40,3 +40,25 @@ $ npx feathers generate service               # Generate a new Service
 ## Help
 
 For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
+
+# Api Documentation
+## Login https://feathersjs.com/guides/basics/login.html
+## Register your user api using the `post` method
+```bash
+npm run migrate
+http://localhost:3030/users
+```
+## Console register users with javascript
+```bash
+(async () => {
+    // POST request using fetch with async/await
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: 'dtphi.khtn@gmail.com', password: '12345678' })
+    };
+    const response = await fetch('http://localhost:3030/users', requestOptions);
+    const data = await response.json();
+    console.log(data)
+})();
+```
