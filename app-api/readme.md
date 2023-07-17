@@ -41,6 +41,11 @@ $ npx feathers generate service               # Generate a new Service
 
 For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
 
+# Packages
+@kalisio/feathers-distributed (https://github.com/kalisio/feathers-distributed)
+feathers-swagger
+ORM: feathers-prisma (https://www.prisma.io/docs/guides) (https://dev.to/prisma/set-up-a-free-postgresql-database-on-supabase-to-use-with-prisma-3pk6) ()
+
 # Api Documentation
 ## Login https://feathersjs.com/guides/basics/login.html
 ## Register your user api using the `post` method
@@ -48,7 +53,7 @@ For more information on all the things you can do with Feathers visit [docs.feat
 npm run migrate
 http://localhost:3030/users
 ```
-## Console register users with javascript
+## Console register users with javascript https://jasonwatmore.com/post/2021/09/05/fetch-http-post-request-examples
 ```bash
 (async () => {
     // POST request using fetch with async/await
