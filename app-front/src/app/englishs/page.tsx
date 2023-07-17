@@ -1,4 +1,4 @@
-import En001 from "../../components/EnglishScripts/En001";
+import En001 from "../components/EnglishScripts/En001";
 
 const English = () => {
     return (
