@@ -12,6 +12,8 @@ import { authentication } from './authentication'
 import { services } from './services/index'
 import { channels } from './channels'
 
+import { HookContext } from './declarations'
+
 const app: Application = koa(feathers())
 
 // Load our app configuration (see config/ folder)
@@ -43,9 +45,33 @@ app.hooks({
   around: {
     all: [logError]
   },
-  before: {},
-  after: {},
-  error: {}
+  before: {
+    all: [
+      async () => {
+        console.info('Api before')
+      }
+    ]
+  },
+  after: {
+    all: [
+      async () => {
+        console.info('Api after')
+      }
+    ]
+  },
+  error: {
+    all: [
+      async (context: HookContext) => {
+        console.error(
+          `>>>>: My Error in '${context.path}' service method '${context.method}' ||`,
+          '>>>',
+          Object.getOwnPropertyNames(context),
+          '|| >>>',
+          context.error.stack
+        )
+      }
+    ]
+  }
 })
 // Register application setup and teardown hooks here
 app.hooks({
