@@ -3,4 +3,5 @@ import type { Application } from '../declarations'
 
 export const services = (app: Application) => {
   // All services will be registered here
+  console.log(app.get('postgresql'))
 }

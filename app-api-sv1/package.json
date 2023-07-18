@@ -7,7 +7,10 @@
   "keywords": [
     "feathers"
   ],
-  "author": {},
+  "author": {
+    "email": "dtphi.khtn@gmail.com",
+    "name": "dtphi"
+  },
   "contributors": [],
   "bugs": {},
   "engines": {
@@ -15,7 +18,7 @@
   },
   "feathers": {
     "language": "ts",
-    "packager": "yarn",
+    "packager": "npm",
     "database": "postgresql",
     "framework": "express",
     "transports": [
@@ -44,5 +47,39 @@
     "bundle:client": "npm run compile && npm pack --pack-destination ./public",
     "migrate": "knex migrate:latest",
     "migrate:make": "knex migrate:make"
+  },
+  "dependencies": {
+    "@feathersjs/adapter-commons": "^5.0.7",
+    "@feathersjs/authentication": "^5.0.7",
+    "@feathersjs/authentication-client": "^5.0.7",
+    "@feathersjs/configuration": "^5.0.7",
+    "@feathersjs/errors": "^5.0.7",
+    "@feathersjs/express": "^5.0.7",
+    "@feathersjs/feathers": "^5.0.7",
+    "@feathersjs/knex": "^5.0.7",
+    "@feathersjs/schema": "^5.0.7",
+    "@feathersjs/socketio": "^5.0.7",
+    "@feathersjs/transport-commons": "^5.0.7",
+    "@feathersjs/typebox": "^5.0.7",
+    "compression": "^1.7.4",
+    "feathers-prisma": "^0.6.0",
+    "knex": "^2.5.1",
+    "pg": "^8.11.1",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "@feathersjs/cli": "^5.0.7",
+    "@feathersjs/rest-client": "^5.0.7",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.4.2",
+    "axios": "^1.4.0",
+    "cross-env": "^7.0.3",
+    "mocha": "^10.2.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.0",
+    "prisma": "^5.0.0",
+    "shx": "^0.3.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
   }
 }
