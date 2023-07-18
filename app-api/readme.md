@@ -2,6 +2,13 @@
 
 > Demo RestApi use Nodejs
 
+# Mysql server
+(https://www.db4free.net/phpMyAdmin)(landmark/Vietnam1)
+$username = landmark; 
+$password = mypw; 
+$host = "db4free.net"; 
+$dbname = landmark;
+
 ## About
 
 This project uses [Feathers](http://feathersjs.com). An open source framework for building APIs and real-time applications.
