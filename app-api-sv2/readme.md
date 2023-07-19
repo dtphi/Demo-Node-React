@@ -1,5 +1,16 @@
 # app-api-sv2
-
+```bash
+npm create feathers@latest app-api-sv2
+```
+## Feathers API
+```bash
+npx feathers
+```
+## General api authentication services
+```bash
+npx feathers g authentication
+yarn migrate
+```
 > Demo service api sv2
 
 ## About
