@@ -11,7 +11,9 @@ export const logError = async (context: HookContext, next: NextFunction) => {
     await next()
 
     const endTime = (performance.now() - startTime) / 1000
-    logger.info(`>>>>>>>>>>>>>>>>>>>>>> Api End App: src/hooks/log-error.ts || Time: ${endTime.toFixed(2)} SECONDS ]]]]`)
+    logger.info(
+      `>>>>>>>>>>>>>>>>>>>>>> Api End App: src/hooks/log-error.ts || Time: ${endTime.toFixed(2)} SECONDS ]]]]`
+    )
   } catch (error: any) {
     logger.error(error.stack)
 
@@ -21,7 +23,11 @@ export const logError = async (context: HookContext, next: NextFunction) => {
     }
 
     const endTime = (performance.now() - startTime) / 1000
-    logger.info(`>>>>>>>>>>>>>>>>>>>>>> Api Error End App: src/hooks/log-error.ts || Time: ${endTime.toFixed(2)} SECONDS ]]]]`)
+    logger.info(
+      `>>>>>>>>>>>>>>>>>>>>>> Api Error End App: src/hooks/log-error.ts || Time: ${endTime.toFixed(
+        2
+      )} SECONDS ]]]]`
+    )
 
     throw error
   }

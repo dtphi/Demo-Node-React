@@ -13,6 +13,9 @@ yarn migrate
 ```
 > Demo service api sv2
 
+# Git
+GitHub's recommended maximum file size of 50.00 MB (https://git-lfs.com/)
+
 ## About
 
 This project uses [Feathers](http://feathersjs.com). An open source framework for building APIs and real-time applications.

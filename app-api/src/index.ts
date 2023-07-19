@@ -13,5 +13,7 @@ process.on('unhandledRejection', (reason) => logger.error('Unhandled Rejection %
 app.listen(port).then(() => {
   logger.info(`Api listening on http://${host}:${port}`)
   const endTime = (performance.now() - startTime) / 1000
-  console.info(`>>>>>>>>>>>>>>>>>>>>>> Api End Listen: src/index.ts || Time: ${endTime.toFixed(2)} SECONDS ]]]]`)
+  console.info(
+    `>>>>>>>>>>>>>>>>>>>>>> Api End Listen: src/index.ts || Time: ${endTime.toFixed(2)} SECONDS ]]]]`
+  )
 })
