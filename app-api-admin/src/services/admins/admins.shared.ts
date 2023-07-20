@@ -7,7 +7,7 @@ export type { Admin, AdminData, AdminPatch, AdminQuery }
 
 export type AdminClientService = Pick<AdminService<Params<AdminQuery>>, (typeof adminMethods)[number]>
 
-export const adminPath = 'api/v1/admins'
+export const adminPath = 'admins'
 
 export const adminMethods = ['find', 'get', 'create', 'patch', 'remove'] as const
 

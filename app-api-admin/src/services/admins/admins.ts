@@ -34,8 +34,8 @@ export const admin = (app: Application) => {
   app.service(adminPath).hooks({
     around: {
       all: [schemaHooks.resolveExternal(adminExternalResolver), schemaHooks.resolveResult(adminResolver)],
-      find: [authenticate('jwt')],
-      get: [authenticate('jwt')],
+      find: [],
+      get: [],
       create: [],
       update: [authenticate('jwt')],
       patch: [authenticate('jwt')],
