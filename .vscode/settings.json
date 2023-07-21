@@ -12,8 +12,12 @@
         "pkey",
         "socketio",
         "supabase",
+        "swager",
         "tailwindcss",
         "typebox",
-        "websockets"
-    ]
+        "websockets",
+        "wgdocs"
+    ],
+    "editor.formatOnSave": true,
+    "prettier.insertPragma": false
 }
