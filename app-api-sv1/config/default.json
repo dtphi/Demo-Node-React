@@ -1,0 +1,17 @@
+{
+  "host": "localhost",
+  "port": 3031,
+  "public": "./public/",
+  "origins": [
+    "http://localhost:3031"
+  ],
+  "prisma": null,
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "postgresql": {
+    "client": "pg",
+    "connection": "postgresql://postgres:&e7.mC4jPsZG8TP@db.fvzsjcysvudvekanqars.supabase.co:5432/postgres"
+  }
+}

@@ -1,7 +1,23 @@
 {
     "cSpell.words": [
+        "dbname",
+        "demonode",
+        "dtphi",
+        "dtphi'org",
         "feathersjs",
+        "fkey",
+        "fvzsjcysvudvekanqars",
         "kalisio",
-        "socketio"
-    ]
+        "mypw",
+        "pkey",
+        "socketio",
+        "supabase",
+        "swager",
+        "tailwindcss",
+        "typebox",
+        "websockets",
+        "wgdocs"
+    ],
+    "editor.formatOnSave": true,
+    "prettier.insertPragma": false
 }
