@@ -1,4 +1,4 @@
- interface IOptions {
+  interface IOptions {
     target?: string;
     changeOrigin?: boolean;
     // true needed for virtual hosted sites
@@ -7,13 +7,13 @@
     pathRewrite?: IPathRewrite;
     router?: IRouter;
   }
-   interface IRouter {
+  interface IRouter {
     // when request.headers.host == 'dev.localhost:3000',
     // override target 'http://www.example.org' to 'http://localhost:8000'
     '/admins'?: string;
     '/service'?: string;
   }
-   interface IPathRewrite {
+  interface IPathRewrite {
     // Customer Api
     '^/api/v1/customers'?: string;
     '^/api/v1/customers/users'?: string;

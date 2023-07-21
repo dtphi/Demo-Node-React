@@ -1,4 +1,4 @@
-# api-internal-gateway
+# api-internal-gateway (https://microservices.io/patterns/microservice-chassis.html)
 
 > Api internal gateway
 

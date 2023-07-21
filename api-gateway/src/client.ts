@@ -4,6 +4,9 @@ import type { TransportConnection, Application } from '@feathersjs/feathers'
 import authenticationClient from '@feathersjs/authentication-client'
 import type { AuthenticationClientOptions } from '@feathersjs/authentication-client'
 
+import { wgdocsClient } from './services/wgdocs/wgdocs.shared'
+export type { Wgdocs, WgdocsData, WgdocsQuery, WgdocsPatch } from './services/wgdocs/wgdocs.shared'
+
 export interface Configuration {
   connection: TransportConnection<ServiceTypes>
 }
@@ -30,5 +33,6 @@ export const createClient = <Configuration = any,>(
   client.configure(authenticationClient(authenticationOptions))
   client.set('connection', connection)
 
+  client.configure(wgdocsClient)
   return client
 }

@@ -1,7 +1,7 @@
 const Profile = () => {
     return (
         <>
-        Profile is here
+        Post is here
         </>
     )
 }

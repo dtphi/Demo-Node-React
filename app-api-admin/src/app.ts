@@ -18,7 +18,9 @@ const app: Application = koa(feathers())
 app.configure(configuration(configurationValidator))
 
 // Set up Koa middleware
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:4000'
+}))
 app.use(serveStatic(app.get('public')))
 app.use(errorHandler())
 app.use(parseAuthentication())

@@ -18,12 +18,24 @@ import { logError } from './hooks/log-error'
 import { sqlite } from './sqlite'
 import { services } from './services/index'
 import { createProxyMiddleware, Filter, Options, RequestHandler } from 'http-proxy-middleware'
-
+import swagger from 'feathers-swagger'
 const app: Application = express(feathers())
 
+app.configure(swagger({
+  specs: {
+    info: {
+      title: 'A test',
+      description: 'A description',
+      version: '1.0.0',
+    },
+    schemes: ['http', 'https'] // Optionally set the protocol schema used (sometimes required when host on https)
+  },
+}))
 // Load app configuration
 app.configure(configuration(configurationValidator))
-app.use(cors())
+app.use(cors({
+  origin: '*'
+}))
 app.use(json())
 app.use(urlencoded({ extended: true }))
 
@@ -43,6 +55,7 @@ const pxyOptions: Options = {
 
     '^/api/v1/admins': '/',
     '^/api/v1/admins/admins': '/admins',
+    '^/api/v1/admins/authentication': '/authentication',
 
     '^/api/v1/service': '/',
   },
