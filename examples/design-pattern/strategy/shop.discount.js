@@ -1,4 +1,4 @@
-console.log('>>>>>>> Start discount:')
+console.log('>>>>>>> Start discount:', 'Mọi con đường sẽ về thành Prome', 'Đường nào cũng về La mã')
 
 /**
  * Map function strategy for the discount.
