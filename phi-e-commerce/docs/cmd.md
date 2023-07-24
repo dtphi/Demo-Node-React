@@ -60,6 +60,10 @@ Keep-Alive: timeout=5
 
 - X-Powered-By: Express // Bên ngoài sẽ biết đc server là Express , sẽ bị dể tấn công .nê cần sử dụng helmet để che lại.
 
+# Pattern for the project.
+
+1. Singleton pattern for the connection to mongodb.
+
 # The package dev dependencies for the project.
 
 1. morgan
@@ -67,3 +71,9 @@ Keep-Alive: timeout=5
 2. helmet
 
 3. compression
+
+4. mongoose
+
+5. bcrypt
+
+6. crypto

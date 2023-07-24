@@ -37,5 +37,5 @@ app.get('/', (req, res, next) => {
 })
 
 // Init error handlers
-
+//console.log(process.env)
 module.exports = app
