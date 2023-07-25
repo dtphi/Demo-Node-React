@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose')
 const { db: { host, name, port, user, pass }} = require('../configs/config.mongodb')
-const connectionStr = `mongodb+srv://${user}:${pass}@${name}.lkpls3w.mongodb.net/`
+const connectionStr = `mongodb+srv://${user}:${pass}@${name}.lkpls3w.mongodb.net/shopDev`
 const connectionStrLocal = `mongodb://${host}:${port}/${name}`
 const { countConnect } = require('../helpers/check.connect')
 class Database {

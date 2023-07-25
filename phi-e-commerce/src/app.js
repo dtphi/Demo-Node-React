@@ -26,18 +26,28 @@ app.use(helmet())
  */
 app.use(compression())
 
+app.use(express.json())
+app.use(express.urlencoded({
+    extended: true
+}))
+
 // Init database
 require('./dbs/init.mongodb')
 const { checkOverload } = require('./helpers/check.connect')
 //checkOverload()
 // Init routes
-app.get('/', (req, res, next) => {
+
+/**
+ * Test Compression send file to client browser.
+ */
+/*app.get('/', (req, res, next) => {
     //const strCompress = "Hello world"
     return res.status(200).json({
         message: 'Welcome to the e-commerce website',
         //metadata: strCompress.repeat(10000)
     })
-})
+})*/
+app.use('/', require('./routes'))
 
 // Init error handlers
 //console.log(process.env)
