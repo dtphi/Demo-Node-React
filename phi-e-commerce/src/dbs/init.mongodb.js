@@ -1,9 +1,10 @@
 'use strict'
 
 const mongoose = require('mongoose')
-
-const connectionStr = 'mongodb+srv://dtphikhtn:ry56MxEAWbuucn9u@shop.lkpls3w.mongodb.net/'
-
+const { db: { host, name, port, user, pass }} = require('../configs/config.mongodb')
+const connectionStr = `mongodb+srv://${user}:${pass}@${name}.lkpls3w.mongodb.net/`
+const connectionStrLocal = `mongodb://${host}:${port}/${name}`
+const { countConnect } = require('../helpers/check.connect')
 class Database {
     /**
      * Constructor function for Database.
@@ -19,8 +20,10 @@ class Database {
             mongoose.set('debug', true)
             mongoose.set('debug', { color: true })
         }
-        mongoose.connect(connectionStr)
-        .then( _ => { console.log('connection to mongodb') })
+        mongoose.connect(connectionStr, {
+            maxPoolSize: 50
+        })
+        .then( _ => { console.log('connection to mongodb success PRO', countConnect()) })
         .catch( err => { console.log('Connection error') })
     }
 
