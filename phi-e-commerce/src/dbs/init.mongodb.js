@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose')
 
-const connectionStr = 'mongodb://localhost:27017/shop'
+const connectionStr = 'mongodb+srv://dtphikhtn:ry56MxEAWbuucn9u@shop.lkpls3w.mongodb.net/'
 
 class Database {
     /**
