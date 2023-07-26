@@ -8,6 +8,7 @@ class KeyTokenService {
 
     static createKeyToken = async ({ userId, publicKey }) => {
         try {
+            // need to change the public key to string.
             const publicKeyString = publicKey.toString()
             const token = keyTokenModel.create({ 
                 user: userId, publicKey: publicKeyString 

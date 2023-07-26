@@ -2,9 +2,9 @@
  
 const shopModel = require('../models/shop.model')
 const bcrypt = require('bcrypt')
-const { generateKeyPairSync, createPublicKey } = require('crypto')
-const KeyTokenService = require('./keyToken.service')
-const { createTokenPair } = require('../auth/authUtils')
+const crypto = require('node:crypto')
+const KeyTokenService = require('./keyToken.ecommerce.service')
+const { createTokenPair } = require('../auth/authEcUtils')
 const { getInfoData } = require('../utils')
 
 const ROLE_SHOP = {
@@ -36,29 +36,19 @@ class AccessService {
             })
             
             if (newShop) {
-                // Create cryptographic usually using for the larger system as amazon.com ....
                 // Create privateKye and publicKey .
-                // PublicKey CryptoGraphy standard.
-                const { privateKey, publicKey } = generateKeyPairSync('rsa', {
-                    modulusLength: 4096,
-                    publicKeyEncoding: {
-                        type:'pkcs1',
-                        format: 'pem'
-                    },
-                    privateKeyEncoding: {
-                        type: 'pkcs1',
-                        format: 'pem'
-                    }
-                })
+                const privateKey = crypto.randomBytes(64).toString('hex')
+                const publicKey = crypto.randomBytes(64).toString('hex')
 
                 console.log(privateKey, publicKey) // Save to KeyTokenStore.
 
-                const publicKeyString = await KeyTokenService.createKeyToken({
+                const keyStore = await KeyTokenService.createKeyToken({
                     userId: newShop._id,
-                    publicKey
+                    publicKey,
+                    privateKey
                 })
-
-                if (!publicKeyString) {
+                console.log('keyStore', keyStore)
+                if (!keyStore) {
                     return {
                         code: 'xxx',
                         message: 'Public key string error creating',
@@ -66,25 +56,23 @@ class AccessService {
                     }
                 }
 
-                console.log('Public key string::', publicKeyString)
-                const publicKeyObject = createPublicKey(publicKeyString)
-                console.log('Public key object::', publicKeyObject)
                 // create token pair
-                const tokenPair = createTokenPair({ userId: newShop._id, email}, publicKeyObject, privateKey )
-                console.log(`Created token successfully ${tokenPair}`)
+                const tokens = await createTokenPair({ userId: newShop._id, email}, publicKey, privateKey )
+                console.log(`Created token successfully ${tokens}`)
 
                 return {
                     code: 201,
                     message: 'Shop created successfully',
                     status:'success',
                     metadata: {
-                        shop: getInfoData({ fields: ['_id', 'email', 'name'], object: newShop }),
+                        shop: getInfoData({ fields: ['_id', 'email', 'name'], obj: newShop }),
                         tokens
                     }
                 }
                 // const token.
             }
         } catch (e) {
+            console.log(e)
             return {
                 code: 'xxx',
                 message: e.message,
