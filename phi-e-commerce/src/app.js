@@ -50,5 +50,20 @@ const { checkOverload } = require('./helpers/check.connect')
 app.use('/', require('./routes'))
 
 // Init error handlers
+app.use((req, res, next) => {
+    const error = new Error('Not Found')
+    error.status = 404
+    next(error)
+})
+//console.log(process.env)
+app.use((error, req, res, next) => {
+    //console.log('Middleware error handle:::', error)
+    const statusCode = error.status || 500
+    return res.status(statusCode).json({
+        status: 'error',
+        code: statusCode,
+        message: error.message || 'Internal Server Error'
+    })
+})
 //console.log(process.env)
 module.exports = app

@@ -6,6 +6,7 @@ const { generateKeyPairSync, createPublicKey } = require('crypto')
 const KeyTokenService = require('./keyToken.service')
 const { createTokenPair } = require('../auth/authUtils')
 const { getInfoData } = require('../utils')
+const { BadRequestError } = require('../core/error.response')
 
 const ROLE_SHOP = {
     ADMIN: 'admin',
@@ -14,19 +15,14 @@ const ROLE_SHOP = {
 class AccessService {
 
     static signUp = async ({ name, email, password }) => {
-        console.log(`Request Body:: ${name}, ${email}, ${password}`)
         try {
             // Step 1: Check email exist?
             // clean() : return origin object.
             //const hotelShop = await shopModel.findOne({ email }).lean()
             const hotelShop = await shopModel.findOne({ email })
-            console.log('HotelShop:::', hotelShop)
 
             if (hotelShop) {
-                return {
-                    code: 'xxx',
-                    message: 'Shop already registered'
-                }
+                throw new BadRequestError('Error shop already registered')
             }
 
             const passHash = await bcrypt.hash(password, 10)
