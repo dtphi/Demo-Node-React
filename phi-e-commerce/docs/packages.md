@@ -15,3 +15,5 @@
 7. jsonwebtoken
 
 8. lodash
+
+9. app-root-path

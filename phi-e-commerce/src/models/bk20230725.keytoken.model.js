@@ -12,23 +12,15 @@ var keyTokenSchema = new Schema({
         required:true,
         ref: 'Shop'
     },
-    privateKey:{
-        type:String,
-        required:true
-    },
     publicKey:{
         type:String,
         required:true
     },
     // Detect hacker attacks.
-    refreshTokenUsed:{
-        type:Array,
-        default:[] // These are the tokens have used.
-    },
     refreshToken:{
-        type:String,
-        required: true
-    }
+        type:Array,
+        default:[]
+    },
 }, {
     collection: COLLECTION_NAME,
     timestamps: true,

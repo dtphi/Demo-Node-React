@@ -24,6 +24,7 @@
     "mongoose": "^7.4.0"
   },
   "devDependencies": {
+    "app-root-path": "^3.1.0",
     "helmet": "^7.0.0",
     "morgan": "^1.10.0"
   }
