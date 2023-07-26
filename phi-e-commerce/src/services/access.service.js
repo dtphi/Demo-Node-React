@@ -18,7 +18,7 @@ class AccessService {
         try {
             // Step 1: Check email exist?
             // clean() : return origin object.
-            //const hotelShop = await shopModel.findOne({ email }).clean()
+            //const hotelShop = await shopModel.findOne({ email }).lean()
             const hotelShop = await shopModel.findOne({ email })
             console.log('HotelShop:::', hotelShop)
 

@@ -52,7 +52,8 @@ const dev = {
         port: process.env.DEV_DB_PORT || 27017,
         name: process.env.DEV_DB_NAME || 'dbDev',
         user: process.env.DEV_DB_USER || '',
-        pass: process.env.DEV_DB_PASS || ''
+        pass: process.env.DEV_DB_PASS || '',
+        mongodb: process.env.DEV_MONGODB || 'mongodb+srv://dtphikhtn:ry56MxEAWbuucn9u@shop.lkpls3w.mongodb.net'
     }
 }
 
@@ -71,5 +72,5 @@ const pro = {
 
 const objConfig = { dev, pro }
 const env = process.env.NODE_ENV || 'dev'
-
+console.log(objConfig[env])
 module.exports = objConfig[env]
