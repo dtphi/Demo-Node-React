@@ -10,8 +10,8 @@ class ProductFactory {
       case 'Clothing':
         new Clothing(payload).createProduct()
         break
-      case 'Electronics':
-        new Electronics(payload).createProduct()
+      case 'Electronic':
+        new Electronic(payload).createProduct()
         break
       default:
         throw new BadRequestError(`Invalid type ${type}`)
@@ -35,8 +35,8 @@ class Product {
     this.product_attributes = product_attributes
   }
 
-  async createProduct () {
-    return await product.create(this)
+  async createProduct (product_id) {
+    return await product.create({ ...this, _id: product_id })
   }
 }
 
@@ -52,12 +52,15 @@ class Clothing extends Product {
   }
 }
 
-class Electronics extends Product {
+class Electronic extends Product {
   async createProduct () {
-    const newElectronic = await electronic.create(this.product_attributes)
+    const newElectronic = await electronic.create({
+      ...this.product_attributes,
+      product_shop: this.product_shop,
+    })
     if (!newElectronic) throw new BadRequestError(`Create new Electronic Error ${this.product_name}`)
 
-    const newProduct = await super.createProduct()
+    const newProduct = await super.createProduct(newElectronic._id)
     if (!newProduct) throw new BadRequestError('Create new product error')
 
     return newProduct

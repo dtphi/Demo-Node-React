@@ -19,6 +19,8 @@
         "mware",
         "mypw",
         "pkey",
+        "REFRESHTOKEN",
+        "rtoken",
         "socketio",
         "supabase",
         "swager",

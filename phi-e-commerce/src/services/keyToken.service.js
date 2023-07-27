@@ -51,7 +51,7 @@ class KeyTokenService {
      */
   static findByUserId = async (userId) => {
     // TypeError: Class constructor ObjectId cannot be invoked without 'new'
-    return await keyTokenModel.findOne({ user: new Types.ObjectId(userId) }).lean()
+    return await keyTokenModel.findOne({ user: new Types.ObjectId(userId) })
   }
 
   /**

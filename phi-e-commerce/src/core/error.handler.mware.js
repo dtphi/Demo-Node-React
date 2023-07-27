@@ -8,11 +8,11 @@ const initErrorHandler = async (req, res, next) => {
 }
 
 const errorHandler = async (error, req, res, next) => {
-  //console.log('Middleware error handle:::', error)
   const statusCode = error.status || 500
   return res.status(statusCode).json({
     status: 'error',
     code: statusCode,
+    //stack: error.stack,
     message: error.message || 'Internal Server Error'
   })
 }

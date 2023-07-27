@@ -2,8 +2,8 @@ const { Schema, model } = require('mongoose')
 
 const DOCUMENT_NAME = 'Product'
 const COLLECTION_NAME = 'Products'
-const COLLECTION_CLOTHING_NAME = 'Clothings'
-const COLLECTION_ELECTRON_NAME = 'Electrons'
+const COLLECTION_CLOTHING_NAME = 'Clothes'
+const COLLECTION_ELECTRON_NAME = 'Electronics'
 
 const productSchema = new Schema({
   product_name: { type: String, required: true },
@@ -11,7 +11,7 @@ const productSchema = new Schema({
   product_description: { type: String },
   product_price: { type: Number, required: true },
   product_quality: { type: Number, required: true },
-  product_type: { type: String, required: true, enum: ['Electronics', 'Clothing', 'Furniture'] },
+  product_type: { type: String, required: true, enum: ['Electronic', 'Clothing', 'Furniture'] },
   product_shop: { type: Schema.Types.ObjectId, ref: 'Shop' },
   product_attributes: { type: Schema.Types.Mixed, required: true }
 }, {
