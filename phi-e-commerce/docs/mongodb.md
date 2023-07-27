@@ -51,3 +51,7 @@ docker network inspect mongoNet | grep 'mongo\|IPv4Address'
 Mongodb
 (https://cloud.mongodb.com/v2/64bf969a20fd4f293fd7de13#/setup/access?includeToast=true)
 dtphikhtn/ry56MxEAWbuucn9u
+
+# Architecture Mongodb
+
+1. Recommended : server 64GB Ram.
