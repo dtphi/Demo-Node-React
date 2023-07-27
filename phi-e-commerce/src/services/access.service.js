@@ -4,7 +4,7 @@ const shopModel = require('../models/shop.model')
 const bcrypt = require('bcrypt')
 const crypto = require('node:crypto')
 const KeyTokenService = require('./keyToken.service')
-const { createTokenPair } = require('../auth/authEcUtils')
+const { createTokenPair } = require('../auth/authUtils')
 const { getInfoData } = require('../utils')
 const { BadRequestError, AuthFailureError } = require('../core/error.response')
 const { findByEmail } = require('./shop.service')
@@ -14,6 +14,15 @@ const ROLE_SHOP = {
     SHOP:'shop'
 }
 class AccessService {
+
+    /**
+     * Remove key store _id when logout.
+     * @param {*} keyStore 
+     * @returns 
+     */
+    static logout = async (keyStore) => {
+        return delKey = await KeyTokenService.removeKeyById(keyStore._id)
+    }
 
     /**
      * 1 - check email in dbs

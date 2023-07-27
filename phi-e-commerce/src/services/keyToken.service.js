@@ -1,10 +1,9 @@
 'use strict'
 
 const keyTokenModel = require('../models/keytoken.model')
+const { Types } = require('mongoose')
 
 class KeyTokenService {
-    constructor() {
-    }
 
     // Level 0
     static _createKeyToken = async ({ userId, publicKey, privateKey }) => {
@@ -34,6 +33,15 @@ class KeyTokenService {
         } catch (e) {
             return e
         }
+    }
+
+    static findByUserId = async ( userId ) => {
+        //TypeError: Class constructor ObjectId cannot be invoked without 'new'
+        return await keyTokenModel.findOne({ user: new Types.ObjectId(userId) }).lean()
+    }
+
+    static removeKeyById = async ( id ) => {
+        return await keyTokenModel.deleteOne({ _id: id })
     }
 }
 
