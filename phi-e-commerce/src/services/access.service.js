@@ -3,17 +3,65 @@
 const shopModel = require('../models/shop.model')
 const bcrypt = require('bcrypt')
 const crypto = require('node:crypto')
+const JWT = require('jsonwebtoken')
 const KeyTokenService = require('./keyToken.service')
-const { createTokenPair } = require('../auth/authUtils')
+const { createTokenPair, verifyJWT } = require('../auth/authUtils')
 const { getInfoData } = require('../utils')
-const { BadRequestError, AuthFailureError } = require('../core/error.response')
+const { BadRequestError, AuthFailureError, ForbiddenError } = require('../core/error.response')
 const { findByEmail } = require('./shop.service')
+const { threadId } = require('node:worker_threads')
 
 const ROLE_SHOP = {
     ADMIN: 'admin',
     SHOP:'shop'
 }
 class AccessService {
+
+    /**
+     * Check refresh token used ?
+     * @param {*} refreshToken 
+     */
+    static handlerRefreshToken = async ( refreshToken ) => {
+        // Check this token used or yet .
+        const foundToken = await KeyTokenService.findRefreshTokenUsed( refreshToken )
+        // If there is
+        if (foundToken) {
+            // Decode xem mày là thằng nào .
+            const { userId, email } = await verifyJWT(refreshToken, foundToken.privateKey)
+            console.log({email, userId})
+
+            // Delete all token in keyStore.
+            await KeyTokenService.deleteKeyById(userId)
+            throw new ForbiddenError('Something wrg happen !! Pls login again')
+        }
+        // Good
+        const holderToken = await KeyTokenService.findRefreshToken(refreshToken)
+        if (!holderToken) throw new AuthFailureError('Shop not registered')
+        // Verify the token
+        const { userId, email } = await verifyJWT(refreshToken, holderToken.privateKey)
+        console.log('[2]:::', { userId, email })
+        // Check user id
+        const foundShop = await findByEmail({ email })
+        if (!foundShop) throw new AuthFailureError('Shop not registered')
+
+        // Create new couple tokens
+        const tokens = await createTokenPair({userId, email}, holderToken.publicKey, holderToken.privateKey)
+
+        // Update tokens
+        holderToken.updateOne({
+            $set: {
+                refreshToken: tokens.refreshToken
+            },
+            $addToSet: {
+                refreshTokenUsed: refreshToken // đã được sử dụng để lấy token mới rồi.
+            }
+        })
+
+        return {
+            user: {userId, email},
+            tokens
+        }
+    }
 
     /**
      * Remove key store _id when logout.
@@ -58,6 +106,11 @@ class AccessService {
         }
     }
 
+    /**
+     * 
+     * @param {*} param0 
+     * @returns 
+     */
     static signUp = async ({ name, email, password }) => {
 
         // Step 1: Check email exist?
