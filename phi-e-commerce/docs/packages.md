@@ -17,3 +17,5 @@
 8. lodash
 
 9. app-root-path
+
+10. standard

@@ -1,10 +1,10 @@
 require('dotenv').config()
 const compression = require('compression')
-const express = require('express');
-const morgan = require('morgan');
-const { default: helmet } = require('helmet');
+const express = require('express')
+const morgan = require('morgan')
+const { default: helmet } = require('helmet')
 
-const app = express();
+const app = express()
 
 // Init middleware
 /**
@@ -28,42 +28,42 @@ app.use(compression())
 
 app.use(express.json())
 app.use(express.urlencoded({
-    extended: true
+  extended: true
 }))
 
 // Init database
 require('./dbs/init.mongodb')
 const { checkOverload } = require('./helpers/check.connect')
-//checkOverload()
+// checkOverload()
 // Init routes
 
 /**
  * Test Compression send file to client browser.
  */
-/*app.get('/', (req, res, next) => {
+/* app.get('/', (req, res, next) => {
     //const strCompress = "Hello world"
     return res.status(200).json({
         message: 'Welcome to the e-commerce website',
         //metadata: strCompress.repeat(10000)
     })
-})*/
+}) */
 app.use('/', require('./routes'))
 
 // Init error handlers
 app.use((req, res, next) => {
-    const error = new Error('Not Found')
-    error.status = 404
-    next(error)
+  const error = new Error('Not Found')
+  error.status = 404
+  next(error)
 })
-//console.log(process.env)
+// console.log(process.env)
 app.use((error, req, res, next) => {
-    console.log('Middleware error handle:::', error)
-    const statusCode = error.status || 500
-    return res.status(statusCode).json({
-        status: 'error',
-        code: statusCode,
-        message: error.message || 'Internal Server Error'
-    })
+  console.log('Middleware error handle:::', error)
+  const statusCode = error.status || 500
+  return res.status(statusCode).json({
+    status: 'error',
+    code: statusCode,
+    message: error.message || 'Internal Server Error'
+  })
 })
-//console.log(process.env)
+// console.log(process.env)
 module.exports = app

@@ -9,7 +9,7 @@ const router = express.Router()
 
 router.post('', asyncHandler(productController.createProduct))
 // Authentication middleware.
-//router.use(authentication)
+// router.use(authentication)
 // Router apply authentication middleware.
 
 module.exports = router
