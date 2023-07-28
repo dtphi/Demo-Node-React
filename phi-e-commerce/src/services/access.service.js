@@ -19,9 +19,9 @@ class AccessService {
      * Check refresh token used ?
      * @param {*} refreshToken
      */
-  static handlerRefreshToken = async ({keyStore, user, refreshToken}) => {
+  static handlerRefreshToken = async ({ keyStore, user, refreshToken }) => {
     const { userId, email } = user
-    
+
     if (keyStore.refreshTokenUsed.includes(refreshToken)) {
       // Delete all token in keyStore.
       await KeyTokenService.deleteKeyById(userId)

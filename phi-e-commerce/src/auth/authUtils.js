@@ -9,7 +9,7 @@ const HEADER = {
   API_KEY: 'x-api-key',
   CLIENT_ID: 'x-client-id',
   AUTHORIZATION: 'authorization',
-  REFRESHTOKEN: 'x-rtoken-id',
+  REFRESHTOKEN: 'x-rtoken-id'
 }
 
 const createTokenPair = async (payload, publicKey, privateKey) => {
@@ -75,7 +75,7 @@ const authentication = asyncHandler(async (req, res, next) => {
       req.keyStore = keyStore
       req.refreshToken = refreshToken
       req.user = decodeUser
-  
+
       return next()
     } catch (e) {
       throw e

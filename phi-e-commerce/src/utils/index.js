@@ -7,6 +7,15 @@ const getInfoData = ({ fields = [], obj = {} }) => {
   return _.pick(obj, fields)
 }
 
+const registerStrategy = (objTypes, registerFactory) => {
+  _.forEach(objTypes, (classRef, type) => {
+    registerFactory[type] = classRef
+  })
+
+  return registerFactory
+}
+
 module.exports = {
-  getInfoData
+  getInfoData,
+  registerStrategy
 }

@@ -19,3 +19,5 @@
 9. app-root-path
 
 10. standard
+
+11. slugify
