@@ -1,3 +1,13 @@
+# Package management and debugging
+
+1 - https://pm2.keymetrics.io/docs/
+2 - https://github.com/node-inspector/node-inspector
+
+# Authentication
+
+1 - https://npmdoc.github.io/node-npmdoc-activedirectory/build/apidoc.html
+2 - https://www.passportjs.org/
+
 # The package dev dependencies for the project.
 
 1. morgan
@@ -21,3 +31,5 @@
 10. standard
 
 11. slugify
+
+12. redis

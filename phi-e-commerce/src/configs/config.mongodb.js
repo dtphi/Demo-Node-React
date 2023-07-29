@@ -46,7 +46,11 @@ module.exports = objConfig[env]
 const dev = {
   app: {
     port: process.env.DEV_APP_PORT || 3056,
-    branch: 'dev'
+    branch: 'dev',
+    VERSION: 1,
+    BUILD: 1,
+    URL: 'http://127.0.0.1',
+    API_PATH : '/api'
   },
   db: {
     database: 'dev',
@@ -56,12 +60,25 @@ const dev = {
     user: process.env.DEV_DB_USER || '',
     pass: process.env.DEV_DB_PASS || '',
     mongodb: process.env.DEV_MONGODB || 'mongodb://localhost:27017'
+  },
+  /*
+  * Get DB Connection String for connecting to MongoDB database
+  */
+  getDBString : function(){
+    return 'mongodb://'+ this.db.host +':'+ this.db.port +'/'+ this.db.name
+  },
+  getHTTPUrl : function(){
+    return 'http://' + this.app.URL + ":" + this.app.port
   }
 }
 
 const pro = {
   app: {
-    port: process.env.PRO_DB_HOST || 3055
+    port: process.env.PRO_DB_HOST || 3055,
+    VERSION: 1,
+    BUILD: 1,
+    URL: 'http://127.0.0.1',
+    API_PATH : '/api',
   },
   db: {
     host: process.env.PRO_DB_HOST || 'localhost',
@@ -69,6 +86,15 @@ const pro = {
     name: process.env.PRO_DB_NAME || 'dbPro',
     user: process.env.PRO_DB_USER || '',
     pass: process.env.PRO_DB_PASS || ''
+  },
+  /*
+  * Get DB Connection String for connecting to MongoDB database
+  */
+  getDBString : function(){
+    return 'mongodb://'+ this.db.host +':'+ this.db.port +'/'+ this.db.name;
+  },
+  getHTTPUrl : function(){
+    return 'http://' + this.app.URL + ":" + this.app.port
   }
 }
 
