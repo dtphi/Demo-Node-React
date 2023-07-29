@@ -1,6 +1,8 @@
 'use strict'
 
 const { product, clothing, electronic, furniture } = require('../../models/product.model')
+const { insertInventory } = require('../../models/repositories/inventory.repo')
+const { BadRequestError } = require('../../core/error.handler.mware')
 
 // Base class for the product
 class Product {
@@ -19,7 +21,15 @@ class Product {
   }
 
   async createProduct (product_id) {
-    return await product.create({ ...this, _id: product_id })
+    const newProduct = await product.create({ ...this, _id: product_id })
+    if (newProduct) {
+      // Create a new inventory product. add the product_stock in the inventory
+      await insertInventory({
+        productId: newProduct._id,
+        stock: this.product_quality,
+        shopId: this.product_shop
+      })
+    }
   }
 }
 

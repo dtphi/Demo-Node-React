@@ -45,15 +45,17 @@ module.exports = objConfig[env]
 // level 2
 const dev = {
   app: {
-    port: process.env.DEV_APP_PORT || 3056
+    port: process.env.DEV_APP_PORT || 3056,
+    branch: 'dev'
   },
   db: {
+    database: 'dev',
     host: process.env.DEV_DB_HOST || 'localhost',
     port: process.env.DEV_DB_PORT || 27017,
     name: process.env.DEV_DB_NAME || 'dbDev',
     user: process.env.DEV_DB_USER || '',
     pass: process.env.DEV_DB_PASS || '',
-    mongodb: process.env.DEV_MONGODB || 'mongodb+srv://dtphikhtn:ry56MxEAWbuucn9u@shop.lkpls3w.mongodb.net'
+    mongodb: process.env.DEV_MONGODB || 'mongodb://localhost:27017'
   }
 }
 
@@ -72,5 +74,5 @@ const pro = {
 
 const objConfig = { dev, pro }
 const env = process.env.NODE_ENV || 'dev'
-console.log(objConfig[env])
+
 module.exports = objConfig[env]
