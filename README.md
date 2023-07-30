@@ -35,6 +35,6 @@ source ~/.bash_profile
 
 # Issues
 
-## 1. DNR-Adding authentication user to the app-api server using the sqlite database.
+## Macos
 
-## 2.
+defaults write com.apple.finder CreateDesktop false && killall Finder
