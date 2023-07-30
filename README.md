@@ -38,3 +38,5 @@ source ~/.bash_profile
 ## Macos
 
 defaults write com.apple.finder CreateDesktop false && killall Finder
+
+Epic Pen (https://epicpen.com/#download)

@@ -12,7 +12,7 @@ const errorHandler = async (error, req, res, next) => {
   return res.status(statusCode).json({
     status: 'error',
     code: statusCode,
-    // stack: error.stack,
+    stack: error.stack,
     message: error.message || 'Internal Server Error'
   })
 }
