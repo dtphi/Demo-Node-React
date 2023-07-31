@@ -61,4 +61,6 @@ module.exports = {
   getInfoData,
   registerStrategy,
   convert2ObjectId,
+  getSelectData,
+  unGetSelectData,
 }

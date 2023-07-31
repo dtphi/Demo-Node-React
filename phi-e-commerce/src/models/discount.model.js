@@ -1,7 +1,7 @@
-const {model, Schema} = require("mongoose");
+const { model, Schema } = require("mongoose")
 
-const DOCUMENT_NAME = 'Discount';
-const COLLECTION_NAME = 'Discounts';
+const DOCUMENT_NAME = 'Discount'
+const COLLECTION_NAME = 'Discounts'
 
 const apiKeySchema = new Schema({
     discount_name: {

@@ -73,18 +73,19 @@ const getProductById = async (productId) => {
     return await product.findOne({ _id: convert2ObjectId(productId) }).lean()
 }
 
-/*
-const findAllProducts = async({limit, sort, page, filter, select}) => {
+const findAllProducts = async ({ limit, sort, page, filter, select }) => {
     const skip = (page - 1) * limit
-    const sortBy = sort === 'ctime' ? {_id: -1} : {_id: 1}
+    const sortBy = sort === 'ctime' ? { _id: -1 } : { _id: 1 }
+
     return await product.find(filter)
         .sort(sortBy)
         .skip(skip)
         .limit(limit)
         .select(select)
-        .lean();
+        .lean()
 }
 
+/*
 const findById = async(product_id, unSelect) => {
     return await product.findById(product_id).select(unSelect)
 }
@@ -121,7 +122,7 @@ module.exports = {
     publishProductByShop,
     unPublishProductByShop,
     searchProductByUser,
-    // findAllProducts,
+    findAllProducts,
     // findById,
     // updateProductById,
     getProductById,
