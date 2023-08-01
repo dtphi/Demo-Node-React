@@ -1,7 +1,7 @@
 'use strict'
 
 const { BadRequestError } = require('../core/error.response')
-const ProductType = require('./types/product')
+const ProductType = require('./types/product.type')
 const { registerStrategy } = require('../utils/index')
 const {
   findAllDraftsForShop,
