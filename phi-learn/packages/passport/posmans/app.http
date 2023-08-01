@@ -1,0 +1,17 @@
+## Check status app
+
+#GET http://localhost:5000/status
+
+## Login api
+
+# POST http://localhost:5000/login
+# Content-Type: application/json
+
+# {
+#     "username": "test@example.com",
+#     "password": "test@123"
+# }
+
+## Profile api
+
+GET http://localhost:5000/profile
