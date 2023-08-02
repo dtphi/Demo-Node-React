@@ -50,7 +50,7 @@ const dev = {
     VERSION: 1,
     BUILD: 1,
     URL: 'http://127.0.0.1',
-    API_PATH : '/api'
+    API_PATH: '/api'
   },
   db: {
     database: 'dev',
@@ -64,11 +64,11 @@ const dev = {
   /*
   * Get DB Connection String for connecting to MongoDB database
   */
-  getDBString : function(){
-    return 'mongodb://'+ this.db.host +':'+ this.db.port +'/'+ this.db.name
+  getDBString: function () {
+    return 'mongodb://' + this.db.host + ':' + this.db.port + '/' + this.db.name
   },
-  getHTTPUrl : function(){
-    return 'http://' + this.app.URL + ":" + this.app.port
+  getHTTPUrl: function () {
+    return 'http://' + this.app.URL + ':' + this.app.port
   }
 }
 
@@ -78,7 +78,7 @@ const pro = {
     VERSION: 1,
     BUILD: 1,
     URL: 'http://127.0.0.1',
-    API_PATH : '/api',
+    API_PATH: '/api'
   },
   db: {
     host: process.env.PRO_DB_HOST || 'localhost',
@@ -90,11 +90,11 @@ const pro = {
   /*
   * Get DB Connection String for connecting to MongoDB database
   */
-  getDBString : function(){
-    return 'mongodb://'+ this.db.host +':'+ this.db.port +'/'+ this.db.name;
+  getDBString: function () {
+    return 'mongodb://' + this.db.host + ':' + this.db.port + '/' + this.db.name
   },
-  getHTTPUrl : function(){
-    return 'http://' + this.app.URL + ":" + this.app.port
+  getHTTPUrl: function () {
+    return 'http://' + this.app.URL + ':' + this.app.port
   }
 }
 

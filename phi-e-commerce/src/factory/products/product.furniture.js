@@ -1,6 +1,6 @@
 'use strict'
 
-const { furniture } = require('../../models/product.model')
+const { furniture } = require('../../models/products/furniture.model')
 const { BadRequestError } = require('../../core/error.response')
 const Product = require('../product')
 

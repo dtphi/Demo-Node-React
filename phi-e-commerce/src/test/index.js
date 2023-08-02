@@ -1,3 +1,3 @@
 export default test = () => {
-    console.log('Testing ok ...')
+  console.log('Testing ok ...')
 }

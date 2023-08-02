@@ -1,7 +1,7 @@
 'use strict'
 
 const _ = require('lodash')
-const { Types } = require("mongoose")
+const { Types } = require('mongoose')
 
 const getInfoData = ({ fields = [], obj = {} }) => {
   console.log('Pick Object::', obj)
@@ -17,11 +17,11 @@ const registerStrategy = (objTypes, registerFactory) => {
 }
 
 const getSelectData = (select = []) => {
-  return Object.fromEntries(select.map((el => [el, 1])))
+  return Object.fromEntries(select.map(el => [el, 1]))
 }
 
 const unGetSelectData = (select = []) => {
-  return Object.fromEntries(select.map((el => [el, 0])))
+  return Object.fromEntries(select.map(el => [el, 0]))
 }
 
 const checkEnable = (value) => {
@@ -34,8 +34,8 @@ const convert2ObjectId = id => {
 
 const removeAttrUndefined = (object) => {
   Object.keys(object).forEach(key => {
-    if (object[key] === undefined
-      || object[key] === null) delete object[key]
+    if (object[key] === undefined ||
+      object[key] === null) delete object[key]
   })
 
   return object
@@ -62,5 +62,5 @@ module.exports = {
   registerStrategy,
   convert2ObjectId,
   getSelectData,
-  unGetSelectData,
+  unGetSelectData
 }
