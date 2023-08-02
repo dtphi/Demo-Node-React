@@ -2,6 +2,7 @@
 
 const { product } = require('../models/product.model')
 const { insertInventory } = require('../models/repositories/inventory.repo')
+const { pushNotiToSystem } = require('../services/notification.service')
 const { BadRequestError } = require('../core/error.response')
 
 class Product {
@@ -29,6 +30,19 @@ class Product {
                 stock: this.product_quality,
                 shopId: this.product_shop
             })
+
+            // Create notification to system
+            await pushNotiToSystem({
+                type: 'SHOP-001',
+                senderId: this.product_shop,
+                receivedId: 1,
+                options: {
+                    product_name: this.product_name,
+                    shop_name: this.product_shop
+                }
+            }).then((rs) => {
+                console.log(rs)
+            }).catch((err) => console.log(err.stack))
         }
 
         return newProduct
