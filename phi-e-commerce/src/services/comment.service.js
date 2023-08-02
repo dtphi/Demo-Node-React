@@ -1,7 +1,20 @@
-const comment = require('../models/comment.model')
-const { convert2ObjectId } = require("../utils")
+'use strict'
+
 const { NotFoundError } = require("../core/error.response")
 const ProductService = require("./product.service")
+const {
+    findById,
+    findParentById,
+    findListByParentId,
+    findListByParentLeftRight,
+    findOneCommentRight,
+    saveInstance,
+    updateManyCommentLeftGreaterThanCommentRight,
+    updateManyCommentRightGreaterThanOrEqualCommentRight,
+    updateManyCommentLeftGreaterThanDown,
+    updateManyCommentRightGreaterThanDown,
+    deleteManyCommentLeftBetweenLeftRightValue,
+} = require('../models/repositories/comment.repo')
 
 /**
  * key features: Comment service
@@ -10,46 +23,34 @@ const ProductService = require("./product.service")
  * - delete a comment [User, Shop , Admin]
  */
 class CommentService {
-    static async createComment({
-        productId, userId, content, parentCommentId = null
-    }) {
-        await this.validateProductExists(productId)
 
-        const commentModel = new comment({
-            comment_product_id: productId,
-            comment_user_id: userId,
-            comment_content: content,
-            comment_parent_id: parentCommentId
-        })
+    /**
+     * Create comment service.
+     * @param {*} param0 
+     * @returns 
+     */
+    static async createComment({ productId, userId, content, parentCommentId = null }) {
+        await this.validateProductExists(productId)
 
         let rightValue = 0
         // 1 cell there are 2 lines left and right.
         if (parentCommentId) {
             // reply comment
-            const parentComment = await comment.findById(parentCommentId)
+            const parentComment = await findParentById(parentCommentId)
             if (!parentComment) throw new NotFoundError('Parent comment not found')
 
+            // update rightValue with parentComment.comment_right
             rightValue = parentComment.comment_right
 
             // updateMany comments right
-            await comment.updateMany({
-                comment_product_id: convert2ObjectId(productId),// filter all documents where comment_product_id = productId.
-                comment_right: { $gte: rightValue } // Select all documents in the comment collection where comment_right is greater than or equal to rightValue.
-            }, {
-                $inc: { comment_right: 2 } // increment 2 all documents in the comment collection.
-            })
+            await updateManyCommentRightGreaterThanOrEqualCommentRight(productId, rightValue, 2)
 
             // updateMany comments left
-            await comment.updateMany({
-                comment_product_id: convert2ObjectId(productId),
-                comment_left: { $gt: rightValue } // Select all documents in the comment collection where comment_left is greater than rightValue.
-            }, {
-                $inc: { comment_left: 2 } // increment 2
-            })
+            await updateManyCommentLeftGreaterThanCommentRight(productId, rightValue, 2)
+
         } else {
-            const maxRightValue = await comment.findOne({
-                comment_product_id: convert2ObjectId(productId)
-            }, 'comment_right', { sort: { comment_right: -1 } })
+            const maxRightValue = await findOneCommentRight(productId)
+
             if (maxRightValue) {
                 rightValue = maxRightValue.comment_right + 1
             } else {
@@ -57,67 +58,48 @@ class CommentService {
             }
         }
 
-        console.log('rightValue::', rightValue)
         // insert to comment
-        commentModel.comment_left = rightValue
-        commentModel.comment_right = rightValue + 1;
-
-        await commentModel.save()
+        const commentModel = await saveInstance(productId, userId, content, parentCommentId, rightValue, (rightValue + 1))
 
         return commentModel
     }
 
-    static async getCommentsByParentId({
-        productId,
-        parentCommentId = null,
-        limit = 50,
-        offset = 0
-    }) {
+    /**
+     * 
+     * @param {*} param0 
+     * @returns 
+     */
+    static async getCommentsByParentId({ productId, parentCommentId = null, limit = 50, offset = 0 }) {
         if (parentCommentId) {
-            const parent = await comment.findById(parentCommentId)
+            const parent = await findParentById(parentCommentId)
             if (!parent) throw new NotFoundError('Not found comment for product')
 
-            return comment.find({
-                comment_product_id: convert2ObjectId(productId),
-                comment_left: { $gt: parent.comment_left },
-                comment_right: { $lte: parent.comment_right }
-            }).select({
-                comment_left: 1,
-                comment_right: 1,
-                comment_content: 1,
-                comment_parent_id: 1
-            }).sort({
-                comment_left: 1
-            });
+            return findListByParentLeftRight(productId, parent, limit, offset)
         }
 
-        return comment.find({
-            comment_product_id: convert2ObjectId(productId),
-            comment_parent_id: parentCommentId
-        }).select({
-            comment_left: 1,
-            comment_right: 1,
-            comment_content: 1,
-            comment_parent_id: 1
-        }).sort({
-            comment_left: 1
-        });
+        return findListByParentId(productId, parentCommentId, limit, offset)
     }
 
+    /**
+     * Validate existing product.
+     * @param {*} productId 
+     */
     static async validateProductExists(productId) {
         // check product exists in the database
         const foundProduct = await ProductService.findProductById(productId)
         if (!foundProduct) throw NotFoundError('Product not found')
     }
 
-    static async deleteComment({
-        productId,
-        commentId
-    }) {
+    /**
+     * Delete the comment.
+     * @param {*} param0 
+     * @returns 
+     */
+    static async deleteComment({ productId, commentId }) {
         await this.validateProductExists(productId)
 
         // detect left and right of commentId
-        const comment = await comment.findById(commentId);
+        const comment = await findById(commentId)
         if (!comment) throw NotFoundError('Comment not found')
 
         // get left, right
@@ -128,25 +110,12 @@ class CommentService {
         const width = rightValue - leftValue + 1
 
         // remove all comment id children
-        await comment.deleteMany({
-            comment_product_id: convert2ObjectId(productId),
-            comment_left: { $gte: leftValue, $lte: rightValue }
-        })
+        await deleteManyCommentLeftBetweenLeftRightValue(productId, leftValue, rightValue)
 
         // update value left and right
-        await comment.updateMany({
-            comment_product_id: convert2ObjectId(productId),
-            comment_right: { $gt: rightValue }
-        }, {
-            $inc: { comment_right: -width }
-        })
+        await updateManyCommentRightGreaterThanDown(productId, rightValue, width)
 
-        await comment.updateMany({
-            comment_product_id: convert2ObjectId(productId),
-            comment_left: { $gt: leftValue }
-        }, {
-            $inc: { comment_left: -width }
-        })
+        await updateManyCommentLeftGreaterThanDown(productId, leftValue, width)
 
         return true
     }
