@@ -12,6 +12,13 @@ const HEADER = {
   REFRESHTOKEN: 'x-rtoken-id'
 }
 
+/**
+ *
+ * @param {*} payload
+ * @param {*} publicKey
+ * @param {*} privateKey
+ * @returns
+ */
 const createTokenPair = async (payload, publicKey, privateKey) => {
   try {
     // accessToken

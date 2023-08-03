@@ -4,6 +4,12 @@ const DiscountService = require('../services/discount.service')
 const { SuccessResponse } = require('../core/success.response')
 
 class DiscountController {
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   createDiscountCode = async (req, res, next) => {
     new SuccessResponse({
       message: 'Create discount success',
@@ -14,6 +20,12 @@ class DiscountController {
     }).send(res)
   }
 
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   getDiscountCodes = async (req, res, next) => {
     new SuccessResponse({
       message: 'Get discount code success',
@@ -24,6 +36,12 @@ class DiscountController {
     }).send(res)
   }
 
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   getAllDiscountAmount = async (req, res, next) => {
     new SuccessResponse({
       message: 'Get discount amount success',
@@ -33,6 +51,12 @@ class DiscountController {
     }).send(res)
   }
 
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   getAllDiscountCodesWithProduct = async (req, res, next) => {
     new SuccessResponse({
       message: 'Get discount amount success',

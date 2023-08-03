@@ -3,6 +3,11 @@
 const apiKeyModel = require('../models/apikey.model')
 const crypto = require('node:crypto')
 
+/**
+ *
+ * @param {*} key
+ * @returns
+ */
 const findById = async (key) => {
   // Documents returned from queries with the lean option enabled are plain javascript objects
   // create a new api key for test.

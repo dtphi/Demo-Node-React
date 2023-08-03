@@ -6,6 +6,13 @@ const HEADER = {
   AUTHORIZATION: 'authorization'
 }
 
+/**
+ *
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns
+ */
 const apiKey = async (req, res, next) => {
   try {
     const key = req.headers[HEADER.API_KEY]?.toString()
@@ -30,6 +37,11 @@ const apiKey = async (req, res, next) => {
   }
 }
 
+/**
+ *
+ * @param {*} permission
+ * @returns
+ */
 const checkPermission = (permission) => {
   return (req, res, next) => {
     if (!req.objKey.permissions) {

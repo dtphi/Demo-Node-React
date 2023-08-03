@@ -30,6 +30,12 @@ class CartController {
     }).send(res)
   }
 
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   delete = async (req, res, next) => {
     new SuccessResponse({
       message: 'Delete cart success',
@@ -37,6 +43,12 @@ class CartController {
     }).send(res)
   }
 
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   listToCart = async (req, res, next) => {
     new SuccessResponse({
       message: 'List cart success',

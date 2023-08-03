@@ -68,6 +68,12 @@ class AccessService {
      * 4 - generates tokens
      * 5 - get data return login
      */
+
+  /**
+   *
+   * @param {*} param0
+   * @returns
+   */
   static login = async ({ email, password, refreshToken = null }) => {
     // 1.
     const foundShop = await findByEmail({ email })

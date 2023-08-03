@@ -68,6 +68,12 @@ class ProductController {
     }).send(res)
   }
 
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   getAllPublicForShop = async (req, res, next) => {
     new SuccessResponse({
       message: 'Get list public product successfully',
@@ -77,6 +83,12 @@ class ProductController {
     }).send(res)
   }
 
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   getListSearchProduct = async (req, res, next) => {
     new SuccessResponse({
       message: 'Get get list search product successfully',

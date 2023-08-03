@@ -3,7 +3,7 @@ const { model, Schema } = require('mongoose')
 const DOCUMENT_NAME = 'Cart'
 const COLLECTION_NAME = 'Carts'
 
-const apiKeySchema = new Schema({
+const cartSchema = new Schema({
   cart_state: {
     type: String,
     require: true,
@@ -41,4 +41,4 @@ const apiKeySchema = new Schema({
   }
 })
 
-module.exports = model(DOCUMENT_NAME, apiKeySchema)
+module.exports = model(DOCUMENT_NAME, cartSchema)

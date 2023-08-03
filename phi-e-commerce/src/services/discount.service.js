@@ -61,6 +61,10 @@ class DiscountService {
     return discountCreated
   }
 
+  /**
+   *
+   * @param {*} payload
+   */
   static async updateDiscountCode (payload) {
     const {
       code, start_date, end_date, is_active, shopId, min_order_value,
@@ -192,7 +196,7 @@ class DiscountService {
     if (discount_max_uses === 0) throw new BadRequestError('Discount are out')
 
     if (new Date() < new Date(discount_start_date) ||
-            new Date() > new Date(discount_end_date)) throw new BadRequestError('Discount code has expired')
+      new Date() > new Date(discount_end_date)) throw new BadRequestError('Discount code has expired')
 
     // check xem cos et gia tri toi thieu hay k
     let totalOrder = 0

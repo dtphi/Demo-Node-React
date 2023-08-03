@@ -11,6 +11,11 @@ const { BadRequestError } = require('../core/error.response')
  * - delete cart item - user
  */
 class CartService {
+  /**
+   *
+   * @param {*} param0
+   * @returns
+   */
   static async createUserCart ({ userId, product }) {
     // check product
     const foundProduct = await getProductById(product._id)
@@ -31,6 +36,11 @@ class CartService {
     return await cartModel.findOneAndUpdate(query, updateOrInsert, options)
   }
 
+  /**
+   *
+   * @param {*} param0
+   * @returns
+   */
   static async updateUserCartQuantity ({ userId, product }) {
     const { productId, quantity } = product
 
@@ -51,6 +61,11 @@ class CartService {
     return await cartModel.findOneAndUpdate(query, updateSet, options)
   }
 
+  /**
+   *
+   * @param {*} param0
+   * @returns
+   */
   static async addToCart ({ userId, product = {} }) {
     const userCart = await cartModel.findOne({
       cart_user_id: userId
@@ -89,6 +104,12 @@ class CartService {
      *  }
      * ]
      */
+
+  /**
+   *
+   * @param {*} param0
+   * @returns
+   */
   static async addToCartV2 ({ userId, shop_order_ids = [] }) {
     const { productId, quantity, old_quantity } = shop_order_ids[0]?.item_products[0]
 
@@ -114,6 +135,11 @@ class CartService {
     })
   }
 
+  /**
+   *
+   * @param {*} param0
+   * @returns
+   */
   static async deleteItemUserCart ({ userId, productId }) {
     const query = { cart_user_id: userId, cart_state: 'active' }
     const updateSet = {
@@ -127,6 +153,11 @@ class CartService {
     return await cartModel.updateOne(query, updateSet)
   }
 
+  /**
+   *
+   * @param {*} param0
+   * @returns
+   */
   static async getListUserCart ({ userId }) {
     return await cartModel.findOne({
       cart_user_id: +userId

@@ -1,7 +1,12 @@
-const { product, electronic, clothing, furniture } = require('../product.model')
+const { product } = require('../product.model')
 const { Types } = require("mongoose")
-const { convert2ObjectId } = require("../../utils");
+const { convert2ObjectId } = require("../../utils")
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 const publishProductByShop = async ({ product_shop, product_id }) => {
     // find one
     const foundShop = await product.findOne({
@@ -18,9 +23,14 @@ const publishProductByShop = async ({ product_shop, product_id }) => {
     // if update success is mongoose will return modifiedCount = 1 else return modifiedCount = 0. 
     const { modifiedCount } = await foundShop.update(foundShop)
 
-    return modifiedCount;
+    return modifiedCount
 }
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 const unPublishProductByShop = async ({ product_shop, product_id }) => {
     // find one
     const foundShop = await product.findOne({
@@ -40,10 +50,20 @@ const unPublishProductByShop = async ({ product_shop, product_id }) => {
     return modifiedCount;
 }
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 const findAllDraftsForShop = async ({ query, limit, skip }) => {
     return await queryProduct({ query, limit, skip })
 }
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 const queryProduct = async ({ query, limit, skip }) => {
     return await product.find(query)
         .populate('product_shop', 'name email -_id')
@@ -54,10 +74,20 @@ const queryProduct = async ({ query, limit, skip }) => {
         .exec()
 }
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 const findAllPublishForShop = async ({ query, limit, skip }) => {
     return await queryProduct({ query, limit, skip })
 }
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 // search full text must isPublished = true
 const searchProductByUser = async ({ keySearch }) => {
     const regexSearch = new RegExp(keySearch)
@@ -69,10 +99,20 @@ const searchProductByUser = async ({ keySearch }) => {
         .lean()
 }
 
+/**
+ * 
+ * @param {*} productId 
+ * @returns 
+ */
 const getProductById = async (productId) => {
     return await product.findOne({ _id: convert2ObjectId(productId) }).lean()
 }
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 const findAllProducts = async ({ limit, sort, page, filter, select }) => {
     const skip = (page - 1) * limit
     const sortBy = sort === 'ctime' ? { _id: -1 } : { _id: 1 }
@@ -85,11 +125,21 @@ const findAllProducts = async ({ limit, sort, page, filter, select }) => {
         .lean()
 }
 
-/*
-const findById = async(product_id, unSelect) => {
+/**
+ * 
+ * @param {*} product_id 
+ * @param {*} unSelect 
+ * @returns 
+ */
+const findById = async (product_id, unSelect) => {
     return await product.findById(product_id).select(unSelect)
 }
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 const updateProductById = async ({
     productId,
     bodyUpdate,
@@ -101,9 +151,14 @@ const updateProductById = async ({
     })
 }
 
+/**
+ * 
+ * @param {*} products 
+ * @returns 
+ */
 const checkProductByServer = async (products) => {
     return await Promise.all(
-        products.map( async product => {
+        products.map(async product => {
             const foundProduct = await getProductById(product.productId)
             if (foundProduct) {
                 return {
@@ -115,7 +170,7 @@ const checkProductByServer = async (products) => {
         })
     )
 }
-*/
+
 module.exports = {
     findAllDraftsForShop,
     findAllPublishForShop,
@@ -123,8 +178,8 @@ module.exports = {
     unPublishProductByShop,
     searchProductByUser,
     findAllProducts,
-    // findById,
-    // updateProductById,
+    findById,
+    updateProductById,
     getProductById,
-    // checkProductByServer
+    checkProductByServer
 }

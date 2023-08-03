@@ -2,6 +2,11 @@
 
 const { notification } = require('../models/notification.model')
 
+/**
+ *
+ * @param {*} param0
+ * @returns
+ */
 const pushNotiToSystem = async ({
   type = 'ORDER-OO1',
   receivedId = 1,
@@ -27,6 +32,11 @@ const pushNotiToSystem = async ({
   return noti
 }
 
+/**
+ *
+ * @param {*} param0
+ * @returns
+ */
 const listNotiByUser = async ({ userId, type = 'All', isRead = 0 }) => {
   const match = { noti_receivedId: userId }
   if (type !== 'All') {

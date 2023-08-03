@@ -4,6 +4,12 @@ const AccessService = require('../services/access.service')
 const { SuccessResponse, CREATED } = require('../core/success.response')
 
 class AccessController {
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   handlerRefreshToken = async (req, res, next) => {
     // bk20230727.authUtils
     /* new SuccessResponse({
@@ -21,6 +27,12 @@ class AccessController {
     }).send(res)
   }
 
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   logout = async (req, res, next) => {
     console.log('Controller Key Store:::', req.keyStore)
     new SuccessResponse({
@@ -29,12 +41,24 @@ class AccessController {
     }).send(res)
   }
 
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   login = async (req, res, next) => {
     new SuccessResponse({
       metadata: await AccessService.login(req.body)
     }).send(res)
   }
 
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   signUp = async (req, res, next) => {
     // return res.status(200).json(await AccessService.signUp(req.body))
     new CREATED({
