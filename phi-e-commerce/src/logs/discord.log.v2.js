@@ -35,7 +35,7 @@ class LoggerService {
             return;
         }
         // You can improve send the message use Chat GPT message call api....
-        channel.send(message).cache(e => console.log(e))
+        channel.send(message).catch(e => console.log(e))
 
     }
 
