@@ -18,6 +18,19 @@ const findById = async (key) => {
   return objKey
 }
 
+/**
+ * Create new api key for new shop.
+ * @param {*} permissions 
+ * @returns 
+ */
+const createShopApiKey = async (permissions = ['0000']) => {
+  const newKey = await apiKeyModel.create({ key: crypto.randomBytes(64).toString('hex'), permissions: permissions })
+  console.log('new Key::::', newKey)
+
+  return newKey
+}
+
 module.exports = {
-  findById
+  findById,
+  createShopApiKey
 }

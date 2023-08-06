@@ -33,3 +33,5 @@
 11. slugify
 
 12. redis
+
+13. kafkajs
