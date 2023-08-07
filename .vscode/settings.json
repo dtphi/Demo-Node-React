@@ -30,6 +30,7 @@
         "pexpire",
         "pham",
         "pkey",
+        "redislabs",
         "REFRESHTOKEN",
         "rtoken",
         "setnx",

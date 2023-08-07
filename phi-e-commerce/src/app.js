@@ -32,6 +32,10 @@ app.use(express.urlencoded({
   extended: true
 }))
 
+// Test redis pub-sub
+// const { productTest } = require('./tests/redis-pub-sub')
+// productTest()
+
 // Init database
 require('./dbs/init.mongodb')
 const { checkOverload } = require('./helpers/check.connect')

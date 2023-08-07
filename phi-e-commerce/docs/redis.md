@@ -27,3 +27,11 @@ redis://default:5QEJOtpOq1rSRfIVzjbnD1OQLylvVV3n@redis-16791.c1.ap-southeast-1-1
 -
 
 5. - Redis giải quyết cơ chế hết hạn dữ liệu thế nào ?
+
+
+# Transaction
+1. WATCH
+2. MULTI
+3. EXEC
+4. DISCARD
+5. UNWATCH
