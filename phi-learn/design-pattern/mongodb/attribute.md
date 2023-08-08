@@ -1,0 +1,1 @@
+## Cách tạo attribute trong product e-commerce.
