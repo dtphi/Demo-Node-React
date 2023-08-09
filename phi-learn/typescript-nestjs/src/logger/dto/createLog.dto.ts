@@ -1,7 +1,7 @@
 export class CreateLogDto {
-    context: string;
-    message: string;
-    level: string;
+  context: string
+  message: string
+  level: string
 }
 
-export default CreateLogDto;
+export default CreateLogDto

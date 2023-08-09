@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { LoggerModule } from './logger/logger.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
+/* eslint-disable prettier/prettier */
+import { Module } from '@nestjs/common'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { LoggerModule } from './logger/logger.module'
+import { TypeOrmModule } from '@nestjs/typeorm'
 
 @Module({
   imports: [
@@ -14,13 +15,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: 'Vietnam1',
       database: 'landmark',
       entities: [],
-      synchronize: true,
+      synchronize: true
     }),
-    LoggerModule,
+    LoggerModule
   ],
-  controllers: [
-    AppController
-  ],
-  providers: [AppService],
+  controllers: [AppController],
+  providers: [AppService]
 })
 export class AppModule { }
