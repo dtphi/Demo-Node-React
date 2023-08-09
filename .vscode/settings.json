@@ -30,6 +30,8 @@
         "pexpire",
         "pham",
         "pkey",
+        "rabbitmq",
+        "rabbitmqctl",
         "redislabs",
         "REFRESHTOKEN",
         "rtoken",
