@@ -22,7 +22,7 @@ const HEADER = {
 const createTokenPair = async (payload, publicKey, privateKey) => {
   try {
     // accessToken
-    const accessToken = await JWT.sign(payload, publicKey, {
+    const accessToken = await JWT.sign(payload, privateKey, {
       expiresIn: '1 days'
     })
 
