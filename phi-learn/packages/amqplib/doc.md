@@ -1,0 +1,1 @@
+## https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html
