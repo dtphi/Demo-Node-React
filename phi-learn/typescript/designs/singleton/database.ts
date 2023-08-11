@@ -5,7 +5,7 @@ class Database {
 
     private constructor() { }
 
-    public static getInstance(): Database {
+    public static getInstance = (): Database => {
         if (!Database.instance) {
             Database.instance = new Database()
         }
@@ -13,7 +13,7 @@ class Database {
         return Database.instance
     }
 
-    public connect(type: string = 'mongodb'): void {
+    public connect = (type: string = 'mongodb'): void => {
         if (!Database.supportDb.includes(type)) {
             throw new Error('Invalid database type specified not supported!')
         }
