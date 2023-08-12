@@ -1,0 +1,21 @@
+{
+  "name": "phi-sys-message-queue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "dotenv": "^16.3.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^7.4.2"
+  },
+  "devDependencies": {
+    "jest": "^29.6.2"
+  }
+}
