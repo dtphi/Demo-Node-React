@@ -6,3 +6,5 @@ node_modules
 .next
 
 /examples/nestjs-typescript
+
+phi-e-commerce/phi-*
