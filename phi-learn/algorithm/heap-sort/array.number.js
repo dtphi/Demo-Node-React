@@ -3,7 +3,7 @@
 
 function sort(arr) {
     var N = arr.length;
-
+    debugger
     // Build heap (rearrange array)
     for (var i = Math.floor(N / 2) - 1; i >= 0; i--)
         heapify(arr, N, i);
