@@ -1,0 +1,289 @@
+<!--XML Intro-->
+<script>
+Node properties
+	nodeName
+	nodeValue
+	nodeType
+
+Node relationships
+	parentNode
+	childNodes
+	firstChild
+	lastChild
+	nextSibling
+	previousSibling
+////////////
+Get Node Values
+////////////
+// get the value of an element
+x = xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue;
+
+/////////////////
+Change node values
+/////////////////
+// change the value of an element
+x = xmlDoc.getElementsByTagName("title")[0].childNodes[0];
+x.nodeValue = "Easy Cooking";
+
+// change attribute using nodeValue
+x=xmlDoc.getElementsByTagName("book")[0];
+y=x.getAttributeNode("category");
+y.nodeValue="food";
+
+// display value of category attribute
+xmlDoc=loadXMLDoc("books.xml");
+x=xmlDoc.getElementsByTagName("book")[0].attributes;
+document.write(x.getNamedItem("category").nodeValue);
+
+
+
+//////////////////
+Remove nodes
+//////////////////
+// Remove a node
+xmlDoc=loadXMLDoc("books.xml");
+y=xmlDoc.getElementsByTagName("book")[0];
+xmlDoc.documentElement.removeChild(y);	//remove first book element
+
+// Remove the current node
+x=xmlDoc.getElementsByTagName("book")[0];
+x.parentNode.removeChild(x);	// parentNode property and removeChild() method are used to remove the current node
+
+// Remove a textNode
+x=xmlDoc.getElementsByTagName("title")[0];
+y=x.childNodes[0];
+x.removeChild(y);
+
+// clear a textNode
+x=xmlDoc.getElementsByTagName("title")[0].childNodes[0];
+x.nodeValue="";		//clears the text of a node
+
+// remove an attribute Node by name
+x=xmlDoc.getElementsByTagName("book");
+x[0].removeAttribute("category");	//removes the "category" attribute in the first <book> element
+
+// remove attribute Nodes by Object
+x=xmlDoc.getElementsByTagName("book");
+for (i=0;i<x.length;i++){
+	while (x[i].attributes.length>0){
+	  attnode=x[i].attributes[0];
+	  old_att=x[i].removeAttributeNode(attnode);	// removes all attributes of all <book> elements
+	}
+}
+
+///////////////////////
+Replace Nodes
+///////////////////////
+// replace an element node
+x=xmlDoc.documentElement;
+
+//create a book element, title element and a text node
+newNode=xmlDoc.createElement("book");
+newTitle=xmlDoc.createElement("title");
+newText=xmlDoc.createTextNode("A Notebook");
+
+//add the text node to the title node,
+newTitle.appendChild(newText);
+
+//add the title node to the book node
+newNode.appendChild(newTitle);
+y=xmlDoc.getElementsByTagName("book")[0]
+
+//replace the first book node with the new node
+x.replaceChild(newNode,y);		// replaces the first <book> element
+
+//////
+A Notebook				EveryDay Italian
+Harry Potter			Harry Potter
+XQuery Kick Start		XQuery Kick Start
+Learning XML			Learning XML
+/////
+
+///////////////////////////
+Add Nodes
+///////////////////////////
+newel = xmlDoc.createElement("edition");
+x=xmlDoc.getElementsByTagName("book")[0];
+x.appendChild(newel);
+
+// create new attribute node
+newatt=xmlDoc.createAttribute("edition");
+newatt.nodeValue="first";
+x=xmlDoc.getElementsByTagName("title");
+x[0].setAttributeNode(newatt);		// Edition: first
+
+// create attribute using setAttribute
+xmlDoc=loadXMLDoc("books.xml");
+x=xmlDoc.getElementsByTagName('book');
+x[0].setAttribute("edition","first");	// Edition: first
+
+// add text to a text Node using insertData
+xmlDoc=loadXMLDoc("books.xml");
+x=xmlDoc.getElementsByTagName("title")[0].childNodes[0];
+x.insertData(0,"Easy ");
+
+/////////////////////////
+Create Nodes
+/////////////////////////
+// create a textNode
+xmlDoc=loadXMLDoc("books.xml");
+newel=xmlDoc.createElement("edition"); // create edition element
+newtext=xmlDoc.createTextNode("first"); // create text node with text first
+newel.appendChild(newtext);  // append new text node to the new element 
+x=xmlDoc.getElementsByTagName("book")[0];
+x.appendChild(newel);	// append the new element node to the first book element
+
+////////////////////////////
+clone a node
+////////////////////////////
+xmlDoc=loadXMLDoc("books.xml");
+oldNode=xmlDoc.getElementsByTagName('book')[0];
+newNode=oldNode.cloneNode(true);
+xmlDoc.documentElement.appendChild(newNode);
+//Output all titles
+y=xmlDoc.getElementsByTagName("title");
+for (i=0;i<y.length;i++){
+	document.write(y[i].childNodes[0].nodeValue);
+}
+//Output
+Everyday Italian
+Harry Potter
+XQuery Kick Start
+Learning XML
+Everyday Italian	// cloned node
+//////////////
+
+</script>
+<!-- XMLHttpRequest
+readyState - 0: request not initialized
+			 1: server connection established
+			 2: request received
+			 3: processing request
+			 4: request finished and response is ready
+status - 200: OK
+		 400: Not found-->
+<div>
+	<b>To:</b> <span id="to"></span><br>
+	<b>From:</b> <span id="from"></span><br>
+	<b>Message:</b> <span id="message"></span>
+</div>
+<script>
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else {// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.open("GET","note.xml",false);	//async=false
+	xmlhttp.send();
+	xmlDoc=xmlhttp.responseXML;
+
+	document.getElementById("to").innerHTML = xmlDoc.getElementsByTagName("to")[0].childNodes[0].nodeValue;
+	document.getElementById("from").innerHTML = xmlDoc.getElementsByTagName("from")[0].childNodes[0].nodeValue;
+	document.getElementById("message").innerHTML = xmlDoc.getElementsByTagName("body")[0].childNodes[0].nodeValue;
+</script>
+
+<!--Parse an XML String into an XML DOM object-->
+<script>
+	txt="<note>";
+	txt=txt+"<to>Tove</to>";
+	txt=txt+"<from>Jani</from>";
+	txt=txt+"<heading>Reminder</heading>";
+	txt=txt+"<body>Don't forget me this weekend!</body>";
+	txt=txt+"</note>";
+
+	if (window.DOMParser){
+		parser=new DOMParser();
+		xmlDoc=parser.parseFromString(txt,"text/xml");
+	}
+	else { // Internet Explorer
+		xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+		xmlDoc.async=false;
+		xmlDoc.loadXML(txt);
+	}
+	document.getElementById("to").innerHTML = xmlDoc.getElementsByTagName("to")[0].childNodes[0].nodeValue;
+	document.getElementById("from").innerHTML = xmlDoc.getElementsByTagName("from")[0].childNodes[0].nodeValue;
+	document.getElementById("message").innerHTML = xmlDoc.getElementsByTagName("body")[0].childNodes[0].nodeValue;
+</script>
+
+<script>
+if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+}
+else{// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+xmlhttp.open("GET","cd_catalog.xml",false);
+xmlhttp.send();
+xmlDoc=xmlhttp.responseXML; 
+
+x=xmlDoc.getElementsByTagName("CD");
+i=0;
+
+function displayCD()
+{
+	artist=(x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue);
+	title=(x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue);
+	year=(x[i].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue);
+	txt="Artist: " + artist + "<br>Title: " + title + "<br>Year: "+ year;
+	document.getElementById("showCD").innerHTML=txt;
+}
+
+function next() {
+	if (i<x.length-1) {
+	  i++;
+	  displayCD();
+	}
+}
+
+function previous() {
+	if (i>0){
+	  i--;
+	  displayCD();
+	}
+}
+</script>
+</head>
+<body onload="displayCD()">
+<div id='showCD'></div><br>
+<input type="button" onclick="previous()" value="<<" />
+<input type="button" onclick="next()" value=">>" />
+</body>
+
+<!--
+Access nodes in 3 ways:
+- By using getElementsByTagName()
+- By looping through the nodes tree
+- By navigating the node tree, using the node relationships\
+-->
+<script>
+x.getElementsByTagName("title"); // all title elements under x node
+xmlDoc.getElementsByTagName("title"); // all title elements in XML document
+</script>
+
+<script>
+xmlDoc = loadXMLDoc("books.xml");
+x = xmlDoc.getElementsByTagName("title");
+y = x[2]; // access the third title element
+</script>
+
+
+<script>
+// print all title elements
+xmlDoc=loadXMLDoc("books.xml");
+x=xmlDoc.getElementsByTagName("title");
+for (i=0;i<x.length;i++){
+	document.write(x[i].childNodes[0].nodeValue);
+}
+</script>
+
+<!-- traversing nodes -->
+<script>
+xmlDoc = loadXMLDoc("books.xml");
+x = xmlDoc.documentElement.childNodes;
+for( i=0; i<x.length ;i++){
+	if(x[i].noteType == 1){
+		document.write(x[i].nodeName);
+	}
+}
+</script>

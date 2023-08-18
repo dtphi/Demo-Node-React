@@ -1,0 +1,53 @@
+///////////////////////////
+Add Nodes
+///////////////////////////
+newel = xmlDoc.createElement("edition");
+x=xmlDoc.getElementsByTagName("book")[0];
+x.appendChild(newel);
+
+// create new attribute node
+newatt=xmlDoc.createAttribute("edition");
+newatt.nodeValue="first";
+x=xmlDoc.getElementsByTagName("title");
+x[0].setAttributeNode(newatt);		// Edition: first
+
+// create attribute using setAttribute
+xmlDoc=loadXMLDoc("books.xml");
+x=xmlDoc.getElementsByTagName('book');
+x[0].setAttribute("edition","first");	// Edition: first
+
+// add text to a text Node using insertData
+xmlDoc=loadXMLDoc("books.xml");
+x=xmlDoc.getElementsByTagName("title")[0].childNodes[0];
+x.insertData(0,"Easy ");
+
+/////////////////////////
+Create Nodes
+/////////////////////////
+// create a textNode
+xmlDoc=loadXMLDoc("books.xml");
+newel=xmlDoc.createElement("edition"); // create edition element
+newtext=xmlDoc.createTextNode("first"); // create text node with text first
+newel.appendChild(newtext);  // append new text node to the new element 
+x=xmlDoc.getElementsByTagName("book")[0];
+x.appendChild(newel);	// append the new element node to the first book element
+
+////////////////////////////
+clone a node
+////////////////////////////
+xmlDoc=loadXMLDoc("books.xml");
+oldNode=xmlDoc.getElementsByTagName('book')[0];
+newNode=oldNode.cloneNode(true);
+xmlDoc.documentElement.appendChild(newNode);
+//Output all titles
+y=xmlDoc.getElementsByTagName("title");
+for (i=0;i<y.length;i++){
+	document.write(y[i].childNodes[0].nodeValue);
+}
+//Output
+Everyday Italian
+Harry Potter
+XQuery Kick Start
+Learning XML
+Everyday Italian	// cloned node
+//////////////

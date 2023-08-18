@@ -1,0 +1,12 @@
+function person(name, age){
+	var name = name;
+	var age = age;
+	
+	function introduce(){
+		alert("My name is " + name + ", and I'm " + age);
+	}
+	return introduce();
+}
+
+var a = person("Jack", 12);
+var b = person("Matt", 14);

@@ -1,0 +1,111 @@
+<html>
+<script src="window.js"></script>
+
+<body>
+<p id="demo"></p>
+<input type="button" value="Load new document" onclick="newDoc()">
+<input type="button" value="Back" onclick="goBack()">
+<input type="button" value="Forward" onclick="goForward()">
+<div id="example"></div>
+<button onclick="myStopFunction()">Stop time</button>
+<button type="button" onclick="example1()">Example1</button>
+<button type="button" onclick="example2()">Example2</button>
+<button type="button" onclick="example3()">Example3</button>
+<button type="button" onclick="example4()">Example4</button>
+<button type="button" onclick="example5()">Example5</button>
+<button type="button" onclick="example6()">Example6</button>
+</body>
+</html>
+/////////////////
+function example1(){
+	var w=window.innerWidth || document.documentElement.clientWidth
+|| document.body.clientWidth;
+
+	var h=window.innerHeight || document.documentElement.clientHeight
+|| document.body.clientHeight;
+
+	x=document.getElementById("demo");
+	x.innerHTML="Browser inner window width: " + w + 
+	", height: " + h + "."
+
+	console.log("Available Width: " + screen.availWidth);
+	console.log("Available Height: " + screen.availHeight);
+	console.log(location.href);
+	console.log(location.pathname);
+}
+
+// history.back
+function goBack(){
+	window.history.back()
+}
+  
+// load a new document
+function newDoc(){
+	window.location.assign("http://learntoprogram.tv")
+}
+
+//history.forward
+function goForward(){
+	window.history.forward()
+}
+
+// window.navigator
+function example2(){
+	txt = "<p>Browser CodeName: " + navigator.appCodeName + "</p>";
+	txt+= "<p>Browser Name: " + navigator.appName + "</p>";
+	txt+= "<p>Browser Version: " + navigator.appVersion + "</p>";
+	txt+= "<p>Cookies Enabled: " + navigator.cookieEnabled + "</p>";
+	txt+= "<p>Platform: " + navigator.platform + "</p>";
+	txt+= "<p>User-agent header: " + navigator.userAgent + "</p>";
+	txt+= "<p>User-agent language: " + navigator.systemLanguage + "</p>";
+	document.getElementById("example").innerHTML=txt;
+}
+
+// pop-up boxes
+function example3(){
+	alert("I am an alert box!");
+	var r=confirm("Press a button");
+	if (r==true){
+		x="You pressed OK!";
+	}
+	else{
+		x="You pressed Cancel!";
+	}
+	document.getElementById("demo").innerHTML=x;
+	
+	var x;
+	var person=prompt("Please enter your name","Harry Potter");
+	if (person!=null){
+		x="Hello " + person + "! How are you today?";
+		document.getElementById("demo").innerHTML=x;
+	}
+}
+
+// Say Hello every 3 seconds
+function example4(){
+	myVar=setInterval(function(){alert("Hello")},3000);
+}
+
+function myStopFunction(){
+	clearInterval(myVar);
+}
+
+// Digital clock
+function example5(){
+	myVar=setInterval(function(){myTimer()},1000);
+	
+	function myTimer(){
+		var d=new Date();
+		var t=d.toLocaleTimeString();
+		document.getElementById("demo").innerHTML=t;
+	}
+}
+
+function myStopFunction()
+{
+	clearTimeout(myVar);
+}
+
+function example6(){
+	setTimeout(function(){alert("Hello")},3000);
+}

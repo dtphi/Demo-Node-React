@@ -1,0 +1,19 @@
+{
+    "server": {
+        "accessLog": "hipache_access.log",
+        "port": 8443,
+        "workers": 5,
+        "maxSockets": 100,
+        "deadBackendTTL": 30,
+        "address": ["127.0.0.1"],
+        "address6": ["::1"],
+        "https": {
+            "port": 8443,
+            "key": "lib/secure/key.pem",
+            "cert": "lib/secure/cert.pem"
+        }
+    },
+    "redisHost": "127.0.0.1",
+    "redisPort": 6379,
+    "redisDatabase": 0
+}

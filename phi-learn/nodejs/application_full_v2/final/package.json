@@ -1,0 +1,13 @@
+{
+  "name": "js-design-patterns",
+  "version": "1.0.0",
+  "description": "JS Design Patterns Source Code",
+  "contributors": [
+    "Truhin Alexandr (http://bumbu.me)"
+  ],
+  "license": "Apache",
+  "dependencies": {
+    "express": "^4.12.4",
+    "requirejs-babel": "0.0.8"
+  }
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>View listening to DOM events</title>
+		<link rel="stylesheet" href="../../style.css"/>
+		<script src="../../node_modules/traceur/bin/traceur.js"></script>
+		<script>
+			new traceur.WebPageTranscoder(document.location.href).run();
+		</script>
+		<script type="module">
+			import 'main.js';
+    	</script>
+	</head>
+	<body>
+		<h1>View listening to DOM events</h1>
+		<p><a href="..">Back</a></p>
+		<hr/>
+		<button id="set">Disable</button>
+	</body>
+</html>

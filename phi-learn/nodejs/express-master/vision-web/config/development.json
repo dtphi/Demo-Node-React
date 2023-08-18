@@ -1,0 +1,39 @@
+{
+  "express": {
+    "port": 8443,
+    "staticCache" : 6048000000
+  },
+  "logger" : {
+    "filename": "logs/web/run.log",
+    "level": "silly"
+  },
+  "mongo": {
+    "url":  "mongodb://localhost/vision"
+  },
+  "redis": {
+    "port": 6379
+  , "host": "localhost"
+  },
+  "sockets": {
+    "loglevel": 1
+  , "pollingduration": 10
+  , "browserclientminification" : false
+  , "browserclientetag" : false
+  , "browserclientgzip" : false
+  },
+  "auth": {
+    "homepage": "https://web.vision.net:8443"
+  , "callback": "https://web.vision.net:8443/auth/github/callback"
+  , "clientId": "5bb691b4ebb5417f4ab9"
+  , "clientSecret": "44c16f4d81c99e1ff5f694a532833298cae10473"
+  },
+  "session": {
+    "secret": "th1$1$a$ecret"
+  , "maxAge": null
+  , "secure": false
+  , "httpOnly": true
+  },
+  "api": {
+    "url":  "http://airasoul:1234567890@api.vision.net:3001"
+  }
+}

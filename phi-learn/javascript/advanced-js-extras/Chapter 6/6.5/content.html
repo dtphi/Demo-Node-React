@@ -1,0 +1,27 @@
+///////////////////////
+Replace Nodes
+///////////////////////
+// replace an element node
+x=xmlDoc.documentElement;
+
+//create a book element, title element and a text node
+newNode=xmlDoc.createElement("book");
+newTitle=xmlDoc.createElement("title");
+newText=xmlDoc.createTextNode("A Notebook");
+
+//add the text node to the title node,
+newTitle.appendChild(newText);
+
+//add the title node to the book node
+newNode.appendChild(newTitle);
+y=xmlDoc.getElementsByTagName("book")[0]
+
+//replace the first book node with the new node
+x.replaceChild(newNode,y);		// replaces the first <book> element
+
+//////
+A Notebook				EveryDay Italian
+Harry Potter			Harry Potter
+XQuery Kick Start		XQuery Kick Start
+Learning XML			Learning XML
+/////

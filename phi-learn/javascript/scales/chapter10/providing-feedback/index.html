@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Providing feedback</title>
+		<script src="../../node_modules/traceur/bin/traceur.js"></script>
+		<script>
+			new traceur.WebPageTranscoder(document.location.href).run();
+		</script>
+		<script type="module">
+			import 'main.js';
+    	</script>
+	</head>
+	<body>
+		<h1>Providing feedback</h1>
+		<p><a href="..">Back</a></p>
+		<hr/>
+		<p id="error" style="display: none; color: red;">Something went wrong</p>
+		<button id="fail1" title="When clicked, this button is disabled and no explanation is given.">Fail 1</button>
+		<button id="fail2" title="This button is disabled when clicked, and even a short generic error message makes it more user-friendly">Fail 2</button>
+	</body>
+</html>

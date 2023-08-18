@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Lazy load</title>
+		<script src="../../node_modules/traceur/bin/traceur.js"></script>
+		<script>
+			new traceur.WebPageTranscoder(document.location.href).run();
+		</script>
+		<script type="module">
+			import 'main.js';
+    	</script>
+	</head>
+	<body>
+		<h1>Lazy load</h1>
+		<p><a href="..">Back</a></p>
+		<hr/>
+		<a href="#" id="do-link">Load...</a>
+	</body>
+</html>

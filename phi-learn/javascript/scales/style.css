@@ -1,0 +1,18 @@
+body {
+	font-family: Arial, Helvetiva, sans-serif;
+	font-size: 0.8em;
+	margin: 3em;
+}
+
+a {
+	color: #4078c0;
+}
+
+p.console {
+	background: #e6f1f6;
+	border: 1px solid #b7c7cf;
+	border-radius: 2px;
+	width: 25%;
+	padding: 1.1em;
+	text-align: center;
+}

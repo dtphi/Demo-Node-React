@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CPU consumption</title>
+		<script src="../../node_modules/traceur/bin/traceur.js"></script>
+		<script>
+			new traceur.WebPageTranscoder(document.location.href).run();
+		</script>
+		<script type="module">
+			import 'main.js';
+    	</script>
+	</head>
+	<body>
+		<h1>CPU consumption</h1>
+		<p><a href="..">Back</a></p>
+		<hr/>
+		<section>
+			<label for="components">Component count:</label>
+			<input id="components" placeholder="how many components?" value="5"/>
+		</section>
+		<section>
+			<label for="data">Data count:</label>
+			<input id="data" placeholder="how much data?" value="5"/>
+		</section>
+	</body>
+</html>

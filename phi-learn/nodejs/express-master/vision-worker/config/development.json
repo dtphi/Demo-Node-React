@@ -1,0 +1,13 @@
+{
+  "logger" : {
+    "filename": "logs/worker/run.log",
+    "level": "silly"
+  },
+  "mongo": {
+    "url":  "mongodb://localhost/vision"
+  },
+  "redis": {
+    "port": 6379
+  , "host": "localhost"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "vision-web",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "vision-core": "git://github.com/AndrewKeig/vision-core.git#master",
+    "express": "~3.3.5",
+    "underscore": "~1.4.4",
+    "async": "~0.2.9",
+    "string": "~1.4.0",
+    "require-directory": "~1.0.0",
+    "consolidate": "~0.9.1",
+    "handlebars": "~1.0.12",
+    "socket.io": "~0.9.16",
+    "passport": "~0.1.17",
+    "passport-github": "~0.1.5",
+    "helmet": "~0.1.0",
+    "ini": "~1.1.0",
+    "session.socket.io": "~0.1.6",
+    "connect-redis": "~1.4.5",
+    "request": "~2.27.0",
+    "mongoose": "~3.6.19"
+  },
+  "devDependencies": {
+    "supertest": "~0.6.0",
+    "mocha": "~1.9.0",
+    "grunt": "~0.4.1",
+    "grunt-nodemon": "0.0.4",
+    "grunt-jscoverage": "0.0.3",
+    "grunt-cafe-mocha": "~0.1.9",
+    "grunt-contrib-handlebars": "~0.5.9",
+    "grunt-cucumber": "~0.2.3",
+    "grunt-env": "~0.4.0",
+    "zombie": "~2.0.0-alpha24",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-cssmin": "~0.6.2",
+    "cucumber": "~0.3.1"
+  }
+}

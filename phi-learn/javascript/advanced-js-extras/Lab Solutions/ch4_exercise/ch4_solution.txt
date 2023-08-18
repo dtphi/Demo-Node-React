@@ -1,0 +1,59 @@
+A)
+//using a function
+function Apple (type) {
+    this.type = type;
+    this.color = "red";
+    this.getInfo = getAppleInfo;
+}
+ 
+function getAppleInfo() {
+    return this.color + ' ' + this.type + ' apple';
+}
+var apple = new Apple('macintosh');
+apple.color = "reddish";
+alert(apple.getInfo());
+
+//method defined internally
+function Apple (type) {
+    this.type = type;
+    this.color = "red";
+    this.getInfo = function() {
+        return this.color + ' ' + this.type + ' apple';
+    };
+}
+
+// method added to the prototype
+function Apple (type) {
+    this.type = type;
+    this.color = "red";
+}
+ 
+Apple.prototype.getInfo = function() {
+    return this.color + ' ' + this.type + ' apple';
+};
+
+B)
+// Using object literals
+var apple = {
+    type: "macintosh",
+    color: "red",
+    getInfo: function () {
+        return this.color + ' ' + this.type + ' apple';
+    }
+}
+
+apple.color = "reddish";
+alert(apple.getInfo());
+
+C)
+ // singleton using a function
+var apple = new function() {
+    this.type = "macintosh";
+    this.color = "red";
+    this.getInfo = function () {
+        return this.color + ' ' + this.type + ' apple';
+    };
+}
+apple.color = "reddish";
+alert(apple.getInfo());
+

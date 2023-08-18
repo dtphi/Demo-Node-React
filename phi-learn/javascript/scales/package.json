@@ -1,0 +1,7 @@
+{
+  "name": "javascript-at-scale",
+  "version": "1.0.0",
+  "devDependencies": {
+	"traceur": ""
+  }
+}

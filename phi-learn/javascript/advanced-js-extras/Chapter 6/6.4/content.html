@@ -1,0 +1,33 @@
+//////////////////
+Remove nodes
+//////////////////
+// Remove a node
+xmlDoc=loadXMLDoc("books.xml");
+y=xmlDoc.getElementsByTagName("book")[0];
+xmlDoc.documentElement.removeChild(y);	//remove first book element
+
+// Remove the current node
+x=xmlDoc.getElementsByTagName("book")[0];
+x.parentNode.removeChild(x);	// parentNode property and removeChild() method are used to remove the current node
+
+// Remove a textNode
+x=xmlDoc.getElementsByTagName("title")[0];
+y=x.childNodes[0];
+x.removeChild(y);
+
+// clear a textNode
+x=xmlDoc.getElementsByTagName("title")[0].childNodes[0];
+x.nodeValue="";		//clears the text of a node
+
+// remove an attribute Node by name
+x=xmlDoc.getElementsByTagName("book");
+x[0].removeAttribute("category");	//removes the "category" attribute in the first <book> element
+
+// remove attribute Nodes by Object
+x=xmlDoc.getElementsByTagName("book");
+for (i=0;i<x.length;i++){
+	while (x[i].attributes.length>0){
+	  attnode=x[i].attributes[0];
+	  old_att=x[i].removeAttributeNode(attnode);	// removes all attributes of all <book> elements
+	}
+}

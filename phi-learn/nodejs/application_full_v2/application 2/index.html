@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Design Patterns Player</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand">Mastering JS Design Patterns Player</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 main">
+        <div class="jumbotron">
+          <h1 id="player-title">waiting...</h1>
+          <!-- <p>Track description</p> -->
+          <div class="progress">
+            <div id="player-progress" class="progress-bar" style="width: 0%;">
+            </div>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" id="player-button-play"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play</button>
+          </div>
+        </div>
+        <h2 class="sub-header">Queue</h2>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Duration</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tracks">
+              <!-- <tr>
+                <td>1</td>
+                <td>Nice track</td>
+                <td>1:23</td>
+                <td>
+                  <button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                  <button class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+                </td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>

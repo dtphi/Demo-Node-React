@@ -1,0 +1,47 @@
+XML NODES
+The root node <bookstore> holds four <book> nodes.
+The first <book> node holds four nodes: <title>, <author>, <year>, and <price>, 
+which contains one text node each, "Everyday Italian", "Giada De Laurentiis", "2005", and "30.00".
+<bookstore>
+  <book category="cooking">
+    <title lang="en">Everyday Italian</title>
+    <author>Giada De Laurentiis</author>
+    <year>2005</year>
+    <price>30.00</price>
+  </book>
+  <book category="children">
+    <title lang="en">Harry Potter</title>
+    <author>J K. Rowling</author>
+    <year>2005</year>
+    <price>29.99</price>
+  </book>
+  <book category="web">
+    <title lang="en">XQuery Kick Start</title>
+    <author>James McGovern</author>
+    <author>Per Bothner</author>
+    <author>Kurt Cagle</author>
+    <author>James Linn</author>
+    <author>Vaidyanathan Nagarajan</author>
+    <year>2003</year>
+    <price>49.99</price>
+  </book>
+  <book category="web" cover="paperback">
+    <title lang="en">Learning XML</title>
+    <author>Erik T. Ray</author>
+    <year>2003</year>
+    <price>39.95</price>
+  </book>
+</bookstore>
+
+XML NODE TREE
+In the XML above, the <title> element is the first child of the <book> element, 
+and the <price> element is the last child of the <book> element.
+Furthermore, the <book> element is the parent node of the <title>, <author>, <year>, and <price> elements.
+<bookstore>
+  <book category="cooking">
+    <title lang="en">Everyday Italian</title>
+    <author>Giada De Laurentiis</author>
+    <year>2005</year>
+    <price>30.00</price>
+  </book>
+</bookstore>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Unnecessary components</title>
+		<script src="../../node_modules/traceur/bin/traceur.js"></script>
+		<script>
+			new traceur.WebPageTranscoder(document.location.href).run();
+		</script>
+		<script type="module">
+			import 'main.js';
+    	</script>
+	</head>
+	<body>
+		<h1>Unnecessary components</h1>
+		<p><a href="..">Back</a></p>
+		<hr/>
+		<ul>
+			<li><a href="#first">First</a></li>
+			<li><a href="#second">Second</a></li>
+		</ul>
+		<p id="content"></p>
+	</body>
+</html>

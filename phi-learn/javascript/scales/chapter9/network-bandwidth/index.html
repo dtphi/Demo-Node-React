@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Network bandwidth</title>
+		<script src="../../node_modules/traceur/bin/traceur.js"></script>
+		<script>
+			new traceur.WebPageTranscoder(document.location.href).run();
+		</script>
+		<script type="module">
+			import 'main.js';
+    	</script>
+	</head>
+	<body>
+		<h1>Network bandwidth</h1>
+		<p><a href="..">Back</a></p>
+		<hr/>
+		<label for="requests">Request count:</label>
+		<input id="requests" placeholder="how many requests?" value="5"/>
+	</body>
+</html>

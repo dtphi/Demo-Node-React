@@ -1,0 +1,36 @@
+<!--XML Intro-->
+<script>
+Node properties
+	nodeName
+	nodeValue
+	nodeType
+
+Node relationships
+	parentNode
+	childNodes
+	firstChild
+	lastChild
+	nextSibling
+	previousSibling
+////////////
+Get Node Values
+////////////
+// get the value of an element
+x = xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue;
+
+/////////////////
+Change node values
+/////////////////
+// change the value of an element
+x = xmlDoc.getElementsByTagName("title")[0].childNodes[0];
+x.nodeValue = "Easy Cooking";
+
+// change attribute using nodeValue
+x=xmlDoc.getElementsByTagName("book")[0];
+y=x.getAttributeNode("category");
+y.nodeValue="food";
+
+// display value of category attribute
+xmlDoc=loadXMLDoc("books.xml");
+x=xmlDoc.getElementsByTagName("book")[0].attributes;
+document.write(x.getNamedItem("category").nodeValue);

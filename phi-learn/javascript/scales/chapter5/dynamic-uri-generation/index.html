@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dynamic URI generation</title>
+		<script src="../../node_modules/traceur/bin/traceur.js"></script>
+		<script>
+			new traceur.WebPageTranscoder(document.location.href).run();
+		</script>
+		<script type="module">
+			import 'main.js';
+    	</script>
+	</head>
+	<body>
+		<h1>Dynamic URI generation</h1>
+		<p><a href="..">Back</a></p>
+		<hr/>
+		<p><a href="#user/1" class="user">User 1</a></p>
+		<p><a href="#group/1" class="group">Group 1</a></p>
+	</body>
+</html>

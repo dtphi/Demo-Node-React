@@ -1,0 +1,45 @@
+body{
+  padding-top: 70px;
+}
+.table tr .btn+.btn {
+  margin-left: 4px;
+}
+.table tr.padded td:nth-child(2) {
+  position: relative;
+}
+.table tr.padded td:nth-child(2):before {
+  content: '>';
+  font-size: 10px;
+  font-weight: bold;
+  padding: 0 4px 0 0;
+  vertical-align: text-top;
+}
+.jumbotron{
+  position: relative;
+  z-index: 1;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+.jumbotron > *{
+  z-index: 3;
+  position: relative;
+}
+.jumbotron h1 {
+  margin-top: 0;
+}
+#player-data-cover{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  text-align: right;
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+  overflow: hidden;
+}
+#player-data-cover img{
+  height: 100%;
+  width: auto;
+}

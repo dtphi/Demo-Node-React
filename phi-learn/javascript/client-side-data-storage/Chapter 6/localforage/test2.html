@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+		<script src="localforage.js"></script>
+</head>
+    
+<body>
+
+<script>
+
+$(document).ready(function() {
+	
+	localforage.setItem("stuff", [1,2,3,4] , function(err, value) {
+		if(err) console.dir(err);
+		console.log(value);
+	});
+	localforage.setItem("person", {
+		name:"Ray",
+		age:43,
+		hobbies:["stuff", "more stuff"]	
+	}, function(err, value) {
+		if(err) console.dir(err);
+		
+		localforage.getItem("person").then(function(value) {
+			console.dir(value);
+		});
+	});
+
+});
+
+</script>
+</body>
+</html>

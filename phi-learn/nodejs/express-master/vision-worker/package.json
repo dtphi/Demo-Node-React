@@ -1,0 +1,14 @@
+{
+  "name": "vision-worker",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node populate.js"
+  },
+  "dependencies": {
+    "vision-core": "git://github.com/AndrewKeig/vision-core.git#master",
+    "node-schedule": "~0.1.9",
+    "underscore": "~1.4.4",
+    "async": "~0.2.9"
+  }
+}

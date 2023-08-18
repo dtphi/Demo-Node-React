@@ -1,0 +1,134 @@
+</script>
+<!-- XMLHttpRequest
+readyState - 0: request not initialized
+			 1: server connection established
+			 2: request received
+			 3: processing request
+			 4: request finished and response is ready
+status - 200: OK
+		 400: Not found-->
+<div>
+	<b>To:</b> <span id="to"></span><br>
+	<b>From:</b> <span id="from"></span><br>
+	<b>Message:</b> <span id="message"></span>
+</div>
+<script>
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else {// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.open("GET","note.xml",false);	//async=false
+	xmlhttp.send();
+	xmlDoc=xmlhttp.responseXML;
+
+	document.getElementById("to").innerHTML = xmlDoc.getElementsByTagName("to")[0].childNodes[0].nodeValue;
+	document.getElementById("from").innerHTML = xmlDoc.getElementsByTagName("from")[0].childNodes[0].nodeValue;
+	document.getElementById("message").innerHTML = xmlDoc.getElementsByTagName("body")[0].childNodes[0].nodeValue;
+</script>
+
+<!--Parse an XML String into an XML DOM object-->
+<script>
+	txt="<note>";
+	txt=txt+"<to>Tove</to>";
+	txt=txt+"<from>Jani</from>";
+	txt=txt+"<heading>Reminder</heading>";
+	txt=txt+"<body>Don't forget me this weekend!</body>";
+	txt=txt+"</note>";
+
+	if (window.DOMParser){
+		parser=new DOMParser();
+		xmlDoc=parser.parseFromString(txt,"text/xml");
+	}
+	else { // Internet Explorer
+		xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+		xmlDoc.async=false;
+		xmlDoc.loadXML(txt);
+	}
+	document.getElementById("to").innerHTML = xmlDoc.getElementsByTagName("to")[0].childNodes[0].nodeValue;
+	document.getElementById("from").innerHTML = xmlDoc.getElementsByTagName("from")[0].childNodes[0].nodeValue;
+	document.getElementById("message").innerHTML = xmlDoc.getElementsByTagName("body")[0].childNodes[0].nodeValue;
+</script>
+
+<script>
+if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+}
+else{// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+xmlhttp.open("GET","cd_catalog.xml",false);
+xmlhttp.send();
+xmlDoc=xmlhttp.responseXML; 
+
+x=xmlDoc.getElementsByTagName("CD");
+i=0;
+
+function displayCD()
+{
+	artist=(x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue);
+	title=(x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue);
+	year=(x[i].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue);
+	txt="Artist: " + artist + "<br>Title: " + title + "<br>Year: "+ year;
+	document.getElementById("showCD").innerHTML=txt;
+}
+
+function next() {
+	if (i<x.length-1) {
+	  i++;
+	  displayCD();
+	}
+}
+
+function previous() {
+	if (i>0){
+	  i--;
+	  displayCD();
+	}
+}
+</script>
+</head>
+<body onload="displayCD()">
+<div id='showCD'></div><br>
+<input type="button" onclick="previous()" value="<<" />
+<input type="button" onclick="next()" value=">>" />
+</body>
+
+<!--
+Access nodes in 3 ways:
+- By using getElementsByTagName()
+- By looping through the nodes tree
+- By navigating the node tree, using the node relationships\
+-->
+<script>
+x.getElementsByTagName("title"); // all title elements under x node
+xmlDoc.getElementsByTagName("title"); // all title elements in XML document
+</script>
+
+<script>
+xmlDoc = loadXMLDoc("books.xml");
+x = xmlDoc.getElementsByTagName("title");
+y = x[2]; // access the third title element
+</script>
+
+
+<script>
+// print all title elements
+xmlDoc=loadXMLDoc("books.xml");
+x=xmlDoc.getElementsByTagName("title");
+for (i=0;i<x.length;i++){
+	document.write(x[i].childNodes[0].nodeValue);
+}
+</script>
+
+<!-- traversing nodes -->
+<script>
+xmlDoc = loadXMLDoc("books.xml");
+x = xmlDoc.documentElement.childNodes;
+for( i=0; i<x.length ;i++){
+	if(x[i].noteType == 1){
+		document.write(x[i].nodeName);
+	}
+}
+</script>

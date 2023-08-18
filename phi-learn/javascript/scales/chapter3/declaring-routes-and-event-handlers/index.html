@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Declaring routes and event handlers</title>
+		<link rel="stylesheet" href="../../style.css"/>
+		<script src="../../node_modules/traceur/bin/traceur.js"></script>
+		<script>
+			new traceur.WebPageTranscoder(document.location.href).run();
+		</script>
+		<script type="module">
+			import 'main.js';
+    	</script>
+	</head>
+	<body>
+		<h1>Declaring routes and event handlers</h1>
+		<p><a href="..">Back</a></p>
+		<hr/>
+		<ul>
+			<li><a href="#route1">Route 1</a></li>
+			<li><a href="#route2">Route 2</a></li>
+		</ul>
+		<p class="console">Take a look at the console output...</p>
+	</body>
+</html>

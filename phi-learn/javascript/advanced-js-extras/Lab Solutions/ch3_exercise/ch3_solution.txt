@@ -1,0 +1,11 @@
+Regular:
+var myCars=new Array(); 
+myCars[0]="Saab";       
+myCars[1]="Volvo";
+myCars[2]="BMW";
+
+Condensed:
+var myCars=new Array("Saab","Volvo","BMW");
+
+Literal:
+var myCars=["Saab","Volvo","BMW"];

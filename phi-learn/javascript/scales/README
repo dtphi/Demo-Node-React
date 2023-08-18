@@ -1,0 +1,36 @@
+JavaScript At Scale Code Examples
+=================================
+
+Here you'll find the instructions for getting
+and running with the code examples for this book.
+
+The first step is installing the node modules we'll
+need. If you don't have nodejs installed, you'll need it.
+
+https://nodejs.org/
+
+Once nodejs installed on your system, you'll have an `npm`
+command available. You'll need the `http-server` package
+installed globally, by running the following command on the
+command line: `npm install -g http-server`. Then, from within this
+directory, run `npm install`.
+
+This will create a new `node_modules` directory. This is
+where the dependencies necessary for running the code
+examples go.
+
+The code examples are organized by chapter. The static
+web server should be running so that we can load ES6 JavaScript
+modules. So from withing this directory, on the command line,
+run `http-server`.
+
+Then in your browser, go to http://127.0.0.1:8080
+
+From here, you can navigate through each chapter, and each code
+example within. You can easily follow along with the code using
+your favorite editor because the file structure is the same as
+what you see in the browser.
+
+Enjoy!
+
+-Adam
