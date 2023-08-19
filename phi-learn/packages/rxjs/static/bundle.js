@@ -12,9 +12,15 @@ module.exports = {
             .flatMap(observable)
             .takeUntil(disconnectObservable)
             .map(function (data) {
+                console.log(`addSender Map::`, JSON.stringify(data))
                 return JSON.stringify(data);
             })
             .subscribe(function (data) {
+                console.log(`addSender Subscribe::`, data)
+                /**
+                 * Socket emit request to the server.
+                 * request | data: {"service":"listenToMessages","me":"Phi"}
+                 */
                 socket.emit('request', data);
             });
     },
@@ -29,9 +35,16 @@ module.exports = {
 },{"rx":32,"socket.io-client":34}],2:[function(require,module,exports){
 var Rx = require('rx');
 
+/**
+ * Observable event click from button send message.
+ */
 var sendPressedObservable = Rx.Observable
     .fromEvent(document.getElementById('send_message'), 'click');
 
+/**
+ * Observable event enter from input message and
+ * filter event key code == 13.
+ */
 var enterPressedObservable = Rx.Observable
     .fromEvent(document.getElementById('message_input'), 'keypress')
     .filter(function (event) {
@@ -39,9 +52,14 @@ var enterPressedObservable = Rx.Observable
         return event.keyCode === ENTER_KEY_CODE || event.which === ENTER_KEY_CODE;
     });
 
+/**
+ * Rx merge events [sendPressedObservable| enterPressedObservable]
+ * return TapObservable
+ */
 var messageSubmitObservable = sendPressedObservable
     .merge(enterPressedObservable)
     .map(function () {
+        console.log(`Click sendMessage Map::`, document.getElementById('message_input').value)
         return document.getElementById('message_input').value;
     }).filter(function (message) {
         return message != "";
@@ -62,13 +80,21 @@ Rx.Observable
 
 },{"rx":32}],3:[function(require,module,exports){
 var Rx = require('rx');
+//debugger
 var connection = require('./connection');
 var events = require('./events');
 
+/**
+ * Input User login to chat box.
+ */
 var logged = prompt("Please enter your name", "");
 
+/**
+ * Message can be observable to enter or click events from user chat.
+ */
 var messagesObservable = events.map(function (value) {
     var userName, splittedUserInput, action, content;
+    //debugger
     if (value.indexOf('!') === 0) {
         userName = value.substring(1);
         return { service: 'blockUser', blocked: userName, from: logged };
@@ -90,14 +116,28 @@ var messagesObservable = events.map(function (value) {
     Rx.Observable.of({ service: 'listenToMessages', me: logged })
 );
 
+/**
+ * Add request to server io when user presses either click or enter key code = 13.
+ */
 connection.addSender(messagesObservable);
 
+/**
+ * Add listen event 'message' client to observer to server.
+ */
 connection.listen('message')
-    .bufferWithTime(500)
+    .bufferWithTime(20000) // listen for message chanel from server.
     .filter(function (messages) {
+        console.log(`Client listen Filter::`, messages)
+        /**
+         * Check message received from server is either a message or empty string.
+         * @return {boolean} true if message not empty string.
+         */
         return messages.length > 0;
     })
     .map(function (messages) {
+        /**
+         * If filter return true , modifier message to #document dom html.
+         */
         var li;
         var i = 0;
         var fragment = document.createDocumentFragment();
@@ -107,9 +147,15 @@ connection.listen('message')
                 (messages[i].to || 'everybody') + ' : ' + messages[i].content;
             fragment.appendChild(li);
         }
+        console.log(`Client listen Map::`, fragment)
         return fragment;
     })
     .subscribe(function (node) {
+        console.log(`Client listen Subscribe::`, node)
+        /**
+         * if node return from map observable is #document dom html.
+         * append child node to document #message dom html.
+         */
         document.getElementById("messages").appendChild(node);
     });
 

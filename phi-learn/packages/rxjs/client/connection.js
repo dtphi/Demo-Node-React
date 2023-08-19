@@ -11,9 +11,15 @@ module.exports = {
             .flatMap(observable)
             .takeUntil(disconnectObservable)
             .map(function (data) {
+                console.log(`addSender Map::`, JSON.stringify(data))
                 return JSON.stringify(data);
             })
             .subscribe(function (data) {
+                console.log(`addSender Subscribe::`, data)
+                /**
+                 * Socket emit request to the server.
+                 * request | data: {"service":"listenToMessages","me":"Phi"}
+                 */
                 socket.emit('request', data);
             });
     },

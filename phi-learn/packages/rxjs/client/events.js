@@ -1,8 +1,15 @@
 var Rx = require('rx');
 
+/**
+ * Observable event click from button send message.
+ */
 var sendPressedObservable = Rx.Observable
     .fromEvent(document.getElementById('send_message'), 'click');
 
+/**
+ * Observable event enter from input message and
+ * filter event key code == 13.
+ */
 var enterPressedObservable = Rx.Observable
     .fromEvent(document.getElementById('message_input'), 'keypress')
     .filter(function (event) {
@@ -10,9 +17,14 @@ var enterPressedObservable = Rx.Observable
         return event.keyCode === ENTER_KEY_CODE || event.which === ENTER_KEY_CODE;
     });
 
+/**
+ * Rx merge events [sendPressedObservable| enterPressedObservable]
+ * return TapObservable
+ */
 var messageSubmitObservable = sendPressedObservable
     .merge(enterPressedObservable)
     .map(function () {
+        console.log(`Click sendMessage Map::`, document.getElementById('message_input').value)
         return document.getElementById('message_input').value;
     }).filter(function (message) {
         return message != "";

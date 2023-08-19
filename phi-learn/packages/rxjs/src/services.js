@@ -1,6 +1,7 @@
 module.exports = function (dataSource) {
     return {
         sendMessage(payload) {
+            console.log(`Server sent message service::`, payload)
             if (payload && payload.content && payload.from) {
                 dataSource.push({
                     from: payload.from,
@@ -10,6 +11,7 @@ module.exports = function (dataSource) {
             }
         },
         command(payload) {
+            console.log(`Server command service::`, payload)
             switch (payload.action) {
                 case 'roll_a_dice':
                     this.sendMessage({ from: 'server', to: payload.from, content: 'Result is ' + Math.round(1 + Math.random() * 5) });
@@ -22,6 +24,7 @@ module.exports = function (dataSource) {
             }
         },
         listenToMessages(payload, observable) {
+            console.log(`Server listen to message service::`, payload)
             let me = payload.me;
             observable = observable || dataSource.get();
             return observable.filter(function (message) {
@@ -29,6 +32,7 @@ module.exports = function (dataSource) {
             });
         },
         blockUser(payload, observable) {
+            console.log(`Server block user service::`, payload)
             let blocked = payload.blocked;
             observable = observable || this.listenToMessages(payload);
             return observable.filter(function (message) {
