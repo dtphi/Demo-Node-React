@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node src/index.js",
-    "build-client": "browserify client/index.js -o static/bundle.js"
+    "build-client": "browserify client/index.js -o static/bundle.js",
+    "build-ex": "browserify example/index.js -o static/rx.debugger.js"
   },
   "keywords": [],
   "author": "",
