@@ -1,9 +1,10 @@
 var Rx = require('rx');
 var io = require('socket.io-client');
 var socket = io('http://localhost:3000');
+const socketEvent = require('../constants/socket.event')
 
-var connectionObservable = Rx.Observable.fromEvent(socket, 'connect');
-var disconnectObservable = Rx.Observable.fromEvent(socket, 'disconnect');
+var connectionObservable = Rx.Observable.fromEvent(socket, socketEvent.clEvent.connect);
+var disconnectObservable = Rx.Observable.fromEvent(socket, socketEvent.clEvent.disconnect);
 
 module.exports = {
     addSender: function (observable) {
@@ -20,7 +21,7 @@ module.exports = {
                  * Socket emit request to the server.
                  * request | data: {"service":"listenToMessages","me":"Phi"}
                  */
-                socket.emit('request', data);
+                socket.emit(socketEvent.clEmit.request, data);
             });
     },
     listen: function (event) {

@@ -2,6 +2,7 @@ var Rx = require('rx');
 //debugger
 var connection = require('./connection');
 var events = require('./events');
+const socketEvent = require('../constants/socket.event')
 
 /**
  * Input User login to chat box.
@@ -43,7 +44,7 @@ connection.addSender(messagesObservable);
 /**
  * Add listen event 'message' client to observer to server.
  */
-connection.listen('message')
+connection.listen(socketEvent.clEvent.message)
     .bufferWithTime(20000) // listen for message chanel from server.
     .filter(function (messages) {
         console.log(`Client listen Filter::`, messages)

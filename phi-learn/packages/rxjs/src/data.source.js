@@ -1,5 +1,6 @@
 const Rx = require('rx')
 const Redis = require('ioredis')
+const redisEvent = require('../constants/redis.event')
 /**
  * The information to connect to the redis server.
  */
@@ -11,18 +12,18 @@ const redisConnect = {
     database: 'shop-dev'
 }
 
-const subscriber = new Redis(redisConnect)
+const consumer = new Redis(redisConnect)
 const publisher = new Redis(redisConnect)
 
-const TOPIC = 'web_chat'
-subscriber.subscribe(TOPIC)
+const TOPIC = redisEvent.channel.web_chat
+consumer.subscribe(TOPIC)
 
 /**
  * Messages observable.
  */
 const messagesObservable = Rx.Observable.fromEvent(
-    subscriber,
-    'message',
+    consumer,
+    redisEvent.event.message,
     (channel, message) => {
         console.log(`Server message observable::`, channel, message)
         return JSON.parse(message)
@@ -34,7 +35,7 @@ module.exports = {
         publisher.publish(TOPIC, JSON.stringify(data))
     },
     get() {
-        console.log(`Server get return subscriber channel::`, TOPIC)
+        console.log(`Server get return consumer channel::`, TOPIC)
         return messagesObservable
     }
 }
