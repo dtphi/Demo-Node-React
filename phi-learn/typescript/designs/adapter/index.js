@@ -14,6 +14,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 /**
+ * 1. Mục tiêu đích
+ * 
  * The Target defines the domain-specific interface used by the client code.
  */
 var Target = /** @class */ (function () {
@@ -25,6 +27,8 @@ var Target = /** @class */ (function () {
     return Target;
 }());
 /**
+ * 2. Người chuyển thể
+ * 
  * The Adaptee contains some useful behavior, but its interface is incompatible
  * with the existing client code. The Adaptee needs some adaptation before the
  * client code can use it.
@@ -38,6 +42,8 @@ var Adaptee = /** @class */ (function () {
     return Adaptee;
 }());
 /**
+ * 3. Bộ chuyển đổi
+ * 
  * The Adapter makes the Adaptee's interface compatible with the Target's
  * interface.
  */
@@ -60,6 +66,7 @@ var Adapter = /** @class */ (function (_super) {
 function clientCodeAdapter(target) {
     console.log(target.request());
 }
+
 console.log('Client: I can work just fine with the Target objects:');
 var target = new Target();
 clientCodeAdapter(target);
