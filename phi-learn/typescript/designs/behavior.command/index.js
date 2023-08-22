@@ -90,6 +90,7 @@ var Invoker = /** @class */ (function () {
 /**
  * The client code can parameterize an invoker with any commands.
  */
+debugger
 var invoker = new Invoker();
 invoker.setOnStart(new SimpleCommand('Say Hi!'));
 var receiver = new Receiver();

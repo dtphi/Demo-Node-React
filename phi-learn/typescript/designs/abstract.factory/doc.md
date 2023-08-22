@@ -19,3 +19,9 @@ This example illustrates the structure of the Abstract Factory design pattern. I
 What classes does it consist of?
 What roles do these classes play?
 In what way the elements of the pattern are related?
+
+## Các tình huống ứng dụng về mô hình Abstract Factory bạn có thể chú ý những điều sau đây:
+### (https://anonystick.com/blog-developer/phan-2-factory-pattern-cach-ma-toi-trien-khai-trong-nha-may-vinfast-fresher-va-junior-nen-bo-qua-phan-3-2020110554662242)
+
+- Bất cứ hệ thống nào cũng không nên phụ thuộc vào một lớp. Hay nói cách khác là. Một hệ thống không nên phụ thuộc vào các chi tiết về cách các cá thể lớp sản phẩm được tạo, kết hợp và thể hiện, điều này rất quan trọng đối với tất cả các loại mẫu của nhà máy. 
+- Hệ thống cung cấp một thư viện sản phẩm, tất cả các sản phẩm xuất hiện với cùng một giao diện, để khách hàng không phụ thuộc vào việc thực hiện cụ thể. Đó là diều bạn lưu ý.
