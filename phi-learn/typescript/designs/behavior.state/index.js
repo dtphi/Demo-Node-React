@@ -92,6 +92,7 @@ var ConcreteStateB = /** @class */ (function (_super) {
 /**
  * The client code.
  */
+debugger
 var context = new Context(new ConcreteStateA());
 context.request1();
 context.request2();

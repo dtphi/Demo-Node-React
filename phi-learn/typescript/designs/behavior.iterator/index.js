@@ -81,6 +81,7 @@ var WordsCollection = /** @class */ (function () {
  * classes, depending on the level of indirection you want to keep in your
  * program.
  */
+debugger
 var collection = new WordsCollection();
 collection.addItem('First');
 collection.addItem('Second');

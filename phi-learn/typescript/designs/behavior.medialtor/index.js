@@ -14,6 +14,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 /**
+ * Nguoi hoa giai
  * Concrete Mediators implement cooperative behavior by coordinating several
  * components.
  */
@@ -87,6 +88,7 @@ var Component2 = /** @class */ (function (_super) {
 /**
  * The client code.
  */
+debugger
 var c1 = new Component1();
 var c2 = new Component2();
 var mediator = new ConcreteMediator(c1, c2);

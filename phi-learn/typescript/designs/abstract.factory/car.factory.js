@@ -2,7 +2,14 @@
  * Define the products need factory.
  */
 class Car {
-    constructor() {
+    constructor(engine, chassis, body) {
+        this.engine = engine;
+        this.chassis = chassis;
+        this.body = body;
+    }
+
+    toString() {
+        return JSON.stringify(this)
     }
 
     price = (price) => {
