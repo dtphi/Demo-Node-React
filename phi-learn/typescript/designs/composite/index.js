@@ -18,7 +18,8 @@ var __extends = (this && this.__extends) || (function () {
  * complex objects of a composition.
  */
 var Component = /** @class */ (function () {
-    function Component() {
+    function Component(identity) {
+        this.identity = identity
     }
     /**
      * Optionally, the base Component can declare an interface for setting and
@@ -62,7 +63,7 @@ var Leaf = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Leaf.prototype.operation = function () {
-        return 'Leaf';
+        return this.identity;
     };
     return Leaf;
 }(Component));
@@ -106,7 +107,7 @@ var Composite = /** @class */ (function (_super) {
             var child = _a[_i];
             results.push(child.operation());
         }
-        return "Branch(".concat(results.join('+'), ")");
+        return `${this.identity}(`.concat(results.join('+'), ")");
     };
     return Composite;
 }(Component));
@@ -121,19 +122,20 @@ function clientCodeComposite(component) {
 /**
  * This way the client code can support the simple leaf components...
  */
-var simple = new Leaf();
+debugger
+var simple = new Leaf('Leaf_000');
 console.log('Client: I\'ve got a simple component:');
 clientCodeComposite(simple);
 console.log('');
 /**
  * ...as well as the complex composites.
  */
-var tree = new Composite();
-var branch1 = new Composite();
-branch1.add(new Leaf());
-branch1.add(new Leaf());
-var branch2 = new Composite();
-branch2.add(new Leaf());
+var tree = new Composite('Tree_000');
+var branch1 = new Composite('Branch_000');
+branch1.add(new Leaf('Leaf_001'));
+branch1.add(new Leaf('Leaf_002'));
+var branch2 = new Composite('Branch_001');
+branch2.add(new Leaf('Leaf_003'));
 tree.add(branch1);
 tree.add(branch2);
 console.log('Client: Now I\'ve got a composite tree:');

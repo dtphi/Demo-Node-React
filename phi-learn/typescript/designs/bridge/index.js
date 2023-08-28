@@ -77,6 +77,7 @@ function clientCodeBridge(abstraction) {
  * The client code should be able to work with any pre-configured abstraction-
  * implementation combination.
  */
+debugger
 var implementation = new ConcreteImplementationA();
 var abstraction = new Abstraction(implementation);
 clientCodeBridge(abstraction);

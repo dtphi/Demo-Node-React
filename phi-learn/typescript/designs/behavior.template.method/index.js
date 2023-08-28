@@ -103,6 +103,7 @@ function clientCodeTemplate(abstractClass) {
     abstractClass.templateMethod();
     // ...
 }
+debugger
 console.log('Same client code can work with different subclasses:');
 clientCodeTemplate(new ConcreteClass1());
 console.log('');

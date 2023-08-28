@@ -86,6 +86,7 @@ function clientCodeDecorator(component) {
     console.log("RESULT: ".concat(component.operation()));
     // ...
 }
+debugger
 /**
  * This way the client code can support both simple components...
  */
