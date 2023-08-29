@@ -73,6 +73,7 @@ function clientCodeFacade(facade) {
     console.log(facade.operation());
     // ...
 }
+debugger
 /**
  * The client code may have some of the subsystem's objects already created. In
  * this case, it might be worthwhile to initialize the Facade with these objects

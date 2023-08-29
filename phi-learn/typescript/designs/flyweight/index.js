@@ -58,6 +58,7 @@ var FlyweightFactory = /** @class */ (function () {
     };
     return FlyweightFactory;
 }());
+debugger
 /**
  * The client code usually creates a bunch of pre-populated flyweights in the
  * initialization stage of the application.

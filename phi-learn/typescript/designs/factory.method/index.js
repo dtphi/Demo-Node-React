@@ -96,6 +96,7 @@ function clientCodeMethod(creator) {
     console.log(creator.someOperation());
     // ...
 }
+debugger
 /**
  * The Application picks a creator's type depending on the configuration or
  * environment.
