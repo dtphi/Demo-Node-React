@@ -57,6 +57,7 @@ function clientCodeProxy(subject) {
     subject.request();
     // ...
 }
+debugger
 console.log('Client: Executing the client code with a real subject:');
 var realSubject = new RealSubject();
 clientCodeProxy(realSubject);

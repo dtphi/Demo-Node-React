@@ -11,4 +11,5 @@ var SingletonClass = /** @class */ (function () {
     };
     return SingletonClass;
 }());
+
 exports.default = SingletonClass;

@@ -43,4 +43,5 @@ function clientCodeSingleton() {
         console.log('Singleton failed, variables contain different instances.');
     }
 }
+debugger
 clientCodeSingleton();

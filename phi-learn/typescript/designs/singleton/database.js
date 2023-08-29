@@ -25,4 +25,5 @@ var Database = /** @class */ (function () {
     };
     return Database;
 }());
+
 exports.default = Database;
