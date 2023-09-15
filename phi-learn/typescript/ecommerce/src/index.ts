@@ -3,7 +3,13 @@ import express, { Express, Request, Response } from 'express'
 import AppMorgan from './middlewares/app.morgan'
 import AppRoutes from './routes'
 
+// Init app
 const app: Express = express()
+
+app.use(express.json())
+app.use(express.urlencoded({
+    extended: true
+}))
 
 // Init log
 app.use(AppMorgan)

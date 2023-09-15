@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "test:strategy": "ts-node ./designs/strategy/strategy.test.ts",
     "exec": "ts-node ./projects/section1/*.ts",
-    "compile": "npx tsc ./projects/section1/*.ts"
+    "compile": "npx tsc ./projects/section1/*.ts",
+    "design-exec": "ts-node ./designs/abstract.factory/*.ts",
+    "design-compile": "npx tsc ./designs/**/*.ts"
   },
   "author": "",
   "license": "ISC",
